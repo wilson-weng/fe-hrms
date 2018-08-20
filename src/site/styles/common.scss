@@ -1,0 +1,151 @@
+$font-color-light: #999 !default;
+$font-color-medium: #666 !default;
+$font-color-tip: #6d7077 !default;
+$font-color-dark: #333 !default;
+$border-light-grey: #ebebeb !default;
+$navbar-default-bg-color: #f9f9f9 !default;
+$body-bg-color: #f2f2f2 !default;
+$white-pure-color: #fff !default;
+$brand-primary: #1C89EA !default;
+$brand-light: #1c92ea !default;
+$border-color: #f0f0f0 !default;
+$red-tips: #EA413A !default;
+$color-orange: #F5A623 !default;
+$color-orange-dark: #FF7043 !default;
+$color-green: #00AF23 !default;
+$color-active: #FFAD29 !default;
+$color-error: #FF0024 !default;
+$border-color-default: #e8e8e8 !default;
+$border-color-dark: #e9e9eb !default;
+$font-color-default: #666 !default;
+
+
+$header-height-default: 35px;
+$padding-default: 24px;
+$sidebar-width: 230px;
+
+
+
+// Font-size
+$font-size-mini: 10;
+$font-size-lt: 12;
+$font-size-sm: 14;
+$font-size-big: 16;
+$font-size-huge: 18;
+$font-size-title: 20;
+$font-size-account: 24;
+$inspect-choice-div-len: 25;
+$font-dashboard-num: 36;
+$font-size-login: 48;
+
+@function pxToRem ($px) {
+  @return $px / 14 + rem;
+}
+
+$colors: (
+        black: $font-color-dark,
+        white: $white-pure-color,
+        orange: $color-orange,
+        orange-dark: $color-orange-dark,
+        green: $color-green,
+        muted-medium: $font-color-medium,
+        link: $brand-primary,
+        error: $color-error,
+        tip: $font-color-tip,
+);
+@each $color, $value in $colors {
+  .color-#{$color} {
+    color: $value;
+  }
+}
+
+$fonts: (
+        0: 0,
+        9: 0.9rem,
+        12: 1.2rem,
+        18: pxToRem($font-size-huge),
+        b: pxToRem($font-size-big),
+        account: pxToRem($font-size-account),
+        lt: pxToRem($font-size-lt),
+        dashboard: pxToRem($font-dashboard-num),
+        login: pxToRem($font-size-login),
+        mini: pxToRem($font-size-mini),
+        title: pxToRem($font-size-title),
+);
+@each $font, $value in $fonts {
+  .f-s-#{$font} {
+    font-size: $value;
+  }
+}
+
+$spacer:                     1rem !default;
+$spacer-x:                   $spacer !default;
+$spacer-y:                   $spacer !default;
+$spacers: (
+  0: (
+    x:   0,
+    y:   0
+  ),
+  1: (
+    x:   $spacer-x,
+    y:   $spacer-y
+  ),
+  2: (
+    x:   ($spacer-x * 1.5),
+    y:   ($spacer-y * 1.5)
+  ),
+  3: (
+    x:   ($spacer-x * 3),
+    y:   ($spacer-y * 3)
+  )
+) !default;
+
+
+@each $prop, $abbrev in (margin: m, padding: p) {
+  @each $size, $lengths in $spacers {
+    $length-x:   map-get($lengths, x);
+    $length-y:   map-get($lengths, y);
+
+    .#{$abbrev}-a-#{$size} { #{$prop}:        $length-y $length-x !important; } // a = All sides
+    .#{$abbrev}-t-#{$size} { #{$prop}-top:    $length-y !important; }
+    .#{$abbrev}-r-#{$size} { #{$prop}-right:  $length-x !important; }
+    .#{$abbrev}-b-#{$size} { #{$prop}-bottom: $length-y !important; }
+    .#{$abbrev}-l-#{$size} { #{$prop}-left:   $length-x !important; }
+
+    // Axes
+    .#{$abbrev}-x-#{$size} {
+      #{$prop}-right:  $length-x !important;
+      #{$prop}-left:   $length-x !important;
+    }
+    .#{$abbrev}-y-#{$size} {
+      #{$prop}-top:    $length-y !important;
+      #{$prop}-bottom: $length-y !important;
+    }
+  }
+}
+
+.h1 {
+  font-size:1.5rem;
+  font-weight:700;
+}
+.h2 {
+  font-size:1.2rem;
+  font-weight:700;
+}
+.h3 {
+  font-size:1rem;
+  font-weight:300;
+}
+.subtitle {
+  font-size:0.8rem;
+  font-weight:300;
+  color: #838E95;
+}
+
+.pull-right{
+  float: right;
+}
+
+.pull-left{
+  float: left;
+}
