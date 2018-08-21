@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import login from './site/views/login.vue'
-import proj from './site/views/ProjList.vue'
+import proj from './site/views/projList.vue'
 import main from './site/views/main.vue'
-import crew from './site/views/CrewList.vue'
-import wage from './site/views/WageList.vue'
+import crew from './site/views/crewList.vue'
+import wage from './site/views/wageList.vue'
 import fine from './site/views/fineList.vue'
-import operation from './site/views/OperationList.vue'
-import worktable from './site/views/WorkTable.vue'
+import wxApply from './site/views/wxApplyList.vue'
+import worktable from './site/views/workTable.vue'
 
 Vue.use(VueRouter)
 
@@ -42,9 +42,9 @@ const routes = [
       name: 'fine',
       component: fine,
     },{
-      path: '/operation',
-      name: 'operation',
-      component: operation,
+      path: '/apply',
+      name: 'wxApply',
+      component: wxApply,
     }]
   },
   {

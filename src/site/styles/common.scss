@@ -97,6 +97,10 @@ $spacers: (
   3: (
     x:   ($spacer-x * 3),
     y:   ($spacer-y * 3)
+  ),
+  tiny: (
+    x:   ($spacer-x * 0.5),
+    y:   ($spacer-y * 0.5)
   )
 ) !default;
 
@@ -136,10 +140,18 @@ $spacers: (
   font-size:1rem;
   font-weight:300;
 }
-.subtitle {
+.h4 {
   font-size:0.8rem;
   font-weight:300;
-  color: #838E95;
+}
+.subtitle {
+   font-size:0.8rem;
+   font-weight:300;
+   color: #838E95;
+ }
+
+.color-text-hint {
+  color: #838E95 !important;
 }
 
 .pull-right{
@@ -148,4 +160,18 @@ $spacers: (
 
 .pull-left{
   float: left;
+}
+
+.text-center{
+  text-align: center;
+}
+.text-right{
+  text-align: right;
+}
+.inline-block{
+  display: inline-block;
+}
+
+.color-link {
+  color: #409EFF;
 }

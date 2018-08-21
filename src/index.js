@@ -8,6 +8,7 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import './site/styles/index.scss';
 
+
 Vue.use(ElementUI)
 // eslint-disable-next-line
 new Vue({ ...App, router, store }).$mount('#app')

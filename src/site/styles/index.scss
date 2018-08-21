@@ -100,3 +100,7 @@ html,body{
   text-align: center;
   margin: 10px;
 }
+
+.el-date-editor--daterange.el-input__inner{
+  width: 280px !important;
+}

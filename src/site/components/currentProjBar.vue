@@ -7,7 +7,7 @@
         <div class="subtitle">{{currentProj.proj_desc}}</div>
       </el-col>
       <el-col>
-        <el-button class="pull-right" @click="backToProjList()">返回项目列表</el-button>
+        <el-button class="pull-right" style="margin-top: 8px;" @click="backToProjList()" size="small">项目列表</el-button>
       </el-col>
     </el-row>
   </el-card>
