@@ -20,8 +20,14 @@
   import navTop from '../components/layout/navTop.vue';
   import navSlider from '../components/layout/navSlider.vue';
   import currentProjBar from '../components/currentProjBar.vue';
+  import { mapState } from 'vuex';
 
   export default {
+    computed: {
+      ...mapState({
+        currentProj: state => state.global.current_proj,
+      }),
+    },
     components: { navTop, navSlider, currentProjBar},
 
     data() {
@@ -34,13 +40,20 @@
         handler: function(val, oldVal){
           if(val.name == 'proj'){
             this.showProjBar = false;
-          }else{
+          }else {
             this.showProjBar = true;
           }
         },
+
         // 深度观察监听
         deep: true
       }
     },
+    mounted(){
+      this.showProjBar = !!this.currentProj.id;
+      if(!this.currentProj.id){
+        this.$router.push('proj');
+      }
+    }
   }
 </script>

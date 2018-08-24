@@ -52,7 +52,7 @@
           <div class="h4">通过微信招聘报名的人员，请电话联系后确认申请人意向</div>
         </el-col>
         <el-col class="text-right">
-          <icon-button-vertical icon="el-icon-picture-outline" text="文本编辑" class="inline-block m-r-tiny"></icon-button-vertical>
+          <icon-button-vertical icon="el-icon-picture-outline" text="文本编辑" class="inline-block m-r-tiny" to-path="/recruit/editor"></icon-button-vertical>
           <el-popover
             placement="bottom"
             width="200"
@@ -61,7 +61,7 @@
             <img :src="recruitPage.qrcode_url"/>
             <icon-button-vertical slot="reference" icon="fas fa-qrcode" text="微信分享" class="inline-block m-r-tiny"></icon-button-vertical>
           </el-popover>
-          <icon-button-vertical icon="el-icon-tickets" text="查看列表" class="inline-block m-r-tiny"></icon-button-vertical>
+          <icon-button-vertical icon="el-icon-tickets" text="查看列表" class="inline-block m-r-tiny" to-path="/apply"></icon-button-vertical>
         </el-col>
       </el-row>
     </el-card>

@@ -24,7 +24,7 @@
     },
     methods: {
       backToProjList(){
-        this.$router.push({path: 'proj'});
+        this.$router.push({path: '/proj'});
       }
     }
 

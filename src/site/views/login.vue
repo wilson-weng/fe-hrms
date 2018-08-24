@@ -47,20 +47,6 @@
                                     v-if="loginStatus === 'login'"
                                 >登录</el-button>
                             </div>
-                            <div v-if="loginStatus === 'reset'">
-                                <el-form-item class="login-input" v-if="loginStatus === 'reset'">
-                        <span class="remember-me">
-                            已有账号,
-                            <span class="color-link" @click="changeFormStatus" style="cursor: pointer">马上登录</span>
-                        </span>
-                                </el-form-item>
-                                <el-button
-                                    type="primary"
-                                    @click="passwordReset('loginForm')"
-                                    style="display: block;width: 100%;margin-top: 40px"
-                                        v-if="loginStatus === 'reset'"
-                                >确认重置</el-button>
-                            </div>
                         </el-form>
                     </el-card>
                 </div>
@@ -75,7 +61,7 @@
         methods: {
           submitForm(formName) {
             console.log(formName);
-            this.$router.push({path: '/logined'});
+            this.$router.push({path: '/worktable'});
           },
         },
         data() {

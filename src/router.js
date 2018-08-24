@@ -8,6 +8,7 @@ import wage from './site/views/wageList.vue'
 import fine from './site/views/fineList.vue'
 import wxApply from './site/views/wxApplyList.vue'
 import worktable from './site/views/workTable.vue'
+import recruitEditor from './site/views/recruitPageEditor.vue'
 
 Vue.use(VueRouter)
 
@@ -45,6 +46,10 @@ const routes = [
       path: '/apply',
       name: 'wxApply',
       component: wxApply,
+    },{
+      path: '/recruit/editor',
+      name: 'recruitEditor',
+      component: recruitEditor,
     }]
   },
   {

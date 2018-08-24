@@ -28,10 +28,10 @@
     <div v-else class="subtitle text-center m-t-2">请选择一个项目查看</div>
     <el-row style="position:fixed; left:0; bottom:0;width:200px;">
       <el-col :span="12" class="text-center">
-        <el-button type="text" class="color-text-hint"><i class="el-icon-setting"></i>设置</el-button>
+        <el-button type="text" class="color-text-hint"><i class="el-icon-setting" style="margin-right: 2px;"></i>设置</el-button>
       </el-col>
       <el-col :span="12" class="text-center">
-        <el-button type="text" class="color-text-hint"><i class="fas fa-sign-out-alt"></i>登出</el-button>
+        <el-button type="text" class="color-text-hint" @click="logout()"><i class="fas fa-sign-out-alt" style="margin-right: 2px;"></i>登出</el-button>
       </el-col>
     </el-row>
   </div>
@@ -40,27 +40,42 @@
 
 <script>
 
-    export default {
-        methods: {
-        },
+  import { mapState } from 'vuex';
 
-        data() {
-            return {
-              projSelected: false,
-            }
-        },
-      watch: {
-        $route: {
-          handler: function(val, oldVal){
-            if(val.name == 'proj'){
-              this.projSelected = false;
-            }else{
-              this.projSelected = true;
-            }
-          },
-          // 深度观察监听
-          deep: true
-        }
+  export default {
+    computed: {
+      ...mapState({
+        currentProj: state => state.global.current_proj,
+      }),
+    },
+    methods: {
+      logout(){
+        console.log('logut')
+        this.$router.push({path: '/login'});
       },
+    },
+
+    data() {
+        return {
+          projSelected: false,
+        }
+    },
+    watch: {
+      $route: {
+        handler: function(val, oldVal){
+          if(val.name == 'proj'){
+            this.projSelected = false;
+          }else{
+            this.projSelected = true;
+          }
+        },
+        // 深度观察监听
+        deep: true
+      }
+    },
+    created(){
+      this.projSelected = !!this.currentProj.id;
     }
+
+  }
 </script>
