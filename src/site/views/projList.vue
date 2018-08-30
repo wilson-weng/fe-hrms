@@ -35,6 +35,9 @@
         this.setCurrentProj(proj);
         this.$router.push({path: 'worktable'});
       }
+    },
+    created(){
+      this.setCurrentProj({});
     }
 
   }

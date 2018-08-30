@@ -5,6 +5,7 @@ const initState = {
   current_proj: {
   },
   current_user: {
+    id: 1,
     real_name: '王经理',
     phone: '18898323455'
   }

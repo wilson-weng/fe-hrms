@@ -175,3 +175,15 @@ $spacers: (
 .color-link {
   color: #409EFF;
 }
+
+.el-form-item {
+  margin-bottom: 8px !important;
+}
+
+.el-button + .el-button {
+  margin-left: 6px !important;
+}
+
+.color-bg {
+  background-color: rgb(249, 251, 253) !important;
+}

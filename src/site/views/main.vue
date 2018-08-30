@@ -38,7 +38,7 @@
     watch: {
       $route: {
         handler: function(val, oldVal){
-          if(val.name == 'proj'){
+          if(val.name == 'proj' || val.name == 'mobile'){
             this.showProjBar = false;
           }else {
             this.showProjBar = true;

@@ -9,6 +9,7 @@ import fine from './site/views/fineList.vue'
 import wxApply from './site/views/wxApplyList.vue'
 import worktable from './site/views/workTable.vue'
 import recruitEditor from './site/views/recruitPageEditor.vue'
+import mobile from './site/views/mobile.vue'
 
 Vue.use(VueRouter)
 
@@ -50,6 +51,10 @@ const routes = [
       path: '/recruit/editor',
       name: 'recruitEditor',
       component: recruitEditor,
+    },{
+      path: '/mobile',
+      name: 'mobile',
+      component: mobile,
     }]
   },
   {
