@@ -4,6 +4,7 @@ import login from './site/views/login.vue'
 import proj from './site/views/projList.vue'
 import main from './site/views/main.vue'
 import crew from './site/views/crewList.vue'
+import crewDetail from './site/views/crewDetail.vue'
 import wage from './site/views/wageList.vue'
 import fine from './site/views/fineList.vue'
 import wxApply from './site/views/wxApplyList.vue'
@@ -35,6 +36,10 @@ const routes = [
       path: '/crew',
       name: 'crew',
       component: crew,
+    },{
+      path: '/crewDetail',
+      name: 'crewDetail',
+      component: crewDetail,
     },{
       path: '/wage',
       name: 'wage',

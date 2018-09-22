@@ -14,34 +14,8 @@
         </el-col>
       </el-row>
     </el-card>
-    <el-card class="m-a-1" :body-style="{padding: 0}">
-      <el-row type="flex" class="p-a-1">
-        <el-col>
-          <div class="h2 m-b-tiny">结算导入
-            <span class="subtitle">上一次导入时间： 3天前</span>
-          </div>
-          <div class="h4">导入结算数据, 自动按照结算规则算出员工工资，批量导入请使用excel模板填写员工信息</div>
-        </el-col>
-        <el-col class="text-right">
-          <icon-button-vertical icon="el-icon-upload2" text="excel导入" class="inline-block"></icon-button-vertical>
-          <icon-button-vertical icon="el-icon-document" text="excel模版" class="inline-block"></icon-button-vertical>
-        </el-col>
-      </el-row>
-    </el-card>
-    <el-card class="m-a-1" :body-style="{padding: 0}">
-      <el-row type="flex" class="p-a-1">
-        <el-col>
-          <div class="h2 m-b-tiny">赔付导入
-            <span class="subtitle">上一次导入时间： 3天前</span>
-          </div>
-          <div class="h4">导入赔付明细, 批量导入请使用excel模板填写员工信息</div>
-        </el-col>
-        <el-col class="text-right">
-          <icon-button-vertical icon="el-icon-upload2" text="excel导入" class="inline-block"></icon-button-vertical>
-          <icon-button-vertical icon="el-icon-document" text="excel模版" class="inline-block"></icon-button-vertical>
-        </el-col>
-      </el-row>
-    </el-card>
+    <wage-work-table></wage-work-table>
+    <fine-work-table></fine-work-table>
     <el-card class="m-a-1" :body-style="{padding: 0}">
       <el-row type="flex" class="p-a-1">
         <el-col>
@@ -70,10 +44,12 @@
 
 <script>
 import iconButtonVertical from '../components/iconButtonVertical.vue';
+import FineWorkTable from '../components/fine/FineWorkTable.vue';
+import WageWorkTable from '../components/wage/WageWorkTable.vue';
 import { mapState } from 'vuex';
 
 export default {
-  components: { iconButtonVertical},
+  components: { iconButtonVertical, FineWorkTable, WageWorkTable },
   computed: {
     ...mapState({
       recruitPage: state => state.apply.recruit_page,
@@ -83,6 +59,9 @@ export default {
     return {
       visible: false
     }
+  },
+  methods: {
+
   }
 }
 </script>

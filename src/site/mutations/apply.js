@@ -1,4 +1,4 @@
-import * as actions from '../actions/wage';
+import * as actions from '../actions/apply';
 import * as mutationTypes from '../constants/mutationTypes';
 
 const initState = {

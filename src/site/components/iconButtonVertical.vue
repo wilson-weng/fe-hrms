@@ -1,5 +1,5 @@
 <template>
-  <el-button class="text-center" style="padding: 12px;" @click="onClick()">
+  <el-button class="text-center" style="padding: 12px;" @click="onClickHandle()">
     <i :class="icon" style="font-size: 18px;"></i>
     <div class="subtitle" style="margin-top: 8px">{{text}}</div>
   </el-button>
@@ -7,10 +7,11 @@
 
 <script>
   export default {
-    props: ['icon', 'text', 'toPath'],
+    props: ['icon', 'text', 'toPath', 'onClick'],
     methods: {
-      onClick() {
-        this.toPath && this.$router.push(this.toPath)
+      onClickHandle() {
+        this.toPath && this.$router.push(this.toPath);
+        this.onClick && this.onClick();
       }
     }
   }

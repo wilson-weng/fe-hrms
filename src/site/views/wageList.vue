@@ -20,68 +20,109 @@
             end-placeholder="结束日期"
             :picker-options="datePickerOptions" size="small">
           </el-date-picker>
-          <el-select v-model="source" placeholder="选择供应商" size="small">
-            <el-option
-              v-for="item in sourceOptions"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
-            </el-option>
-          </el-select>
+          <!--<el-select v-model="source" placeholder="选择供应商" size="small">-->
+            <!--<el-option-->
+              <!--v-for="item in sourceOptions"-->
+              <!--:key="item.value"-->
+              <!--:label="item.label"-->
+              <!--:value="item.value">-->
+            <!--</el-option>-->
+          <!--</el-select>-->
           <el-button icon="el-icon-search" size="small"></el-button>
-          <el-button style="float: right;" size="small">导出明细</el-button>
+          <el-button style="float: right;" size="small" @click="showExportPanel = !showExportPanel">{{showExportPanel?'收起':'导出明细'}}</el-button>
         </div>
       </div>
-      <list-view :table-attrs="table.attrs" :table-data="wageList" :pages="table.pages" :on-page-change="onPageChange"></list-view>
+      <wage-export-panel v-show="showExportPanel"></wage-export-panel>
+      <list-view :table-attrs="tableAttrs" :table-data="wageList" :pages="Math.ceil(wageQueryCount/10)" :on-page-change="onPageChange"></list-view>
     </el-card>
+    <el-dialog
+      :visible.sync="showDetailDialog"
+      title="结算详情"
+      width="50%">
+      <info-list-item v-for='item in Object.keys(currentRow)' :title="item" :value="currentRow[item]" :key="item"></info-list-item>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 
-  import { mapState } from 'vuex';
+  import { mapState, mapActions } from 'vuex';
   import listView from '../components/listView.vue';
+  import wageExportPanel from '../components/wage/wageExportPanel.vue';
+  import infoListItem from '../components/infoListItem.vue';
+  import { downloadExcel } from '../utils/excel';
 
   import {datePickerQuickSelections} from '../constants/constants';
 
   export default {
-    components: { listView},
+    components: { listView, infoListItem, wageExportPanel },
 
     computed: {
       ...mapState({
+        currentProj: state => state.global.current_proj,
         wageList: state => state.wage.wage_list,
+        wageTableDisplay: state => state.wage.wage_table_display,
+        wageQueryCount: state => state.wage.wage_query_count,
       }),
-    },
-
-    methods: {
-      onPageChange(){
-        console.log('on page change', datePickerQuickSelections, this.dateRange)
+      filters: function(){
+        return {
+          startTime: this.dateRange? this.dateRange[0].getTime()/1000:0,
+          endTime: this.dateRange? this.dateRange[1].getTime()/1000:0,
+        }
       }
     },
     data() {
       return {
-        table: {
-          pages: 2,
-          attrs: [
-            {prop: 'work_date', attrName: '日期', width: '150'},
-            {prop: 'id', attrName: '员工编号'},
-            {prop: 'real_name', attrName: '姓名'},
-            {prop: 'work_hours', attrName: '工时'},
-            {prop: 'work_counts', attrName: '件数'},
-            {prop: 'wage', attrName: '结算金额'},
-            {prop: 'remark', attrName: '备注',}
-          ]
-        },
-        sourceOptions: [
-          {value: 0, label: '全部供应商'},
-          {value: 1, label: '一号供应商'},
-          {value: 2, label: '二号供应商'},
-          {value: 3, label: '三号供应商'},
-        ],
-        dateRange: '',
+        tableAttrs: [],
         datePickerOptions: datePickerQuickSelections,
-        source: ''
+        showConfirmDeleteDialog: false,
+        currentRow: {},
+        currentRowIndex: 0,
+        dateRange: '',
+        showDetailDialog: false,
+        showExportPanel: false
       }
     },
+    created(){
+      this.query(1, ()=>{
+        this.tableAttrs = this.wageTableDisplay.split(',').map(item=>{
+          return {prop: item, attrName: item}
+        });
+        this.tableAttrs.push({prop: 'modify', attrName: '操作', buttons: [{
+            onClick: this.viewWageRecord, text: '详情'
+          }]})
+      })
+    },
+    methods: {
+      ...mapActions(['getWageRecords','exportWageRecords']),
+      onPageChange(page){
+        this.query(page);
+      },
+      onFilterClick(){
+        this.query(1);
+      },
+      viewWageRecord(row){
+        this.currentRow = row;
+        this.showDetailDialog = true;
+      },
+      query(page, callback){
+        this.getWageRecords({page: page, proj_id: this.currentProj.id, filters: JSON.stringify(this.filters)}).then(()=>{
+          callback && callback()
+        })
+      },
+      exportWages(){
+        this.exportWageRecords({proj_id: this.currentProj.id, filters: JSON.stringify(this.filters)}).then(content=>{
+          downloadExcel('异常明细', JSON.parse(content.result), 'xlsx', 'wageDownload')
+        })
+      },
+      getDownloadFileName(){
+        if(this.dateRange){
+          return `赔付明细${this.dateRange[0].toDateString()}-${this.dateRange[1].toDateString()}.xlsx`
+        }else{
+          return '赔付明细（最新500条）.xlsx'
+        }
+      }
+    },
+
   }
 </script>

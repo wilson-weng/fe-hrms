@@ -4,7 +4,7 @@
       <el-table-column v-for="attr in tableAttrs" :key="attr.prop" v-if="attr.buttons" :width="attr.width"
         :label="attr.attrName">
         <template slot-scope="scope">
-          <el-button @click="btn.onClick(scope.row)" type="text" size="small" v-for="btn in attr.buttons" :key="btn.text">{{btn.text}}</el-button>
+          <el-button @click="btn.onClick(scope.row, scope.$index)" type="text" size="small" v-for="btn in attr.buttons" :key="btn.text">{{btn.text}}</el-button>
         </template>
       </el-table-column>
       <el-table-column v-else :prop="attr.prop" :label="attr.attrName" :width="attr.width">
@@ -25,7 +25,6 @@
   export default {
     props: ['tableAttrs', 'tableData', 'pages', 'onPageChange'],
     created() {
-      console.log(this.tableAttrs[5].buttons)
     },
     data() {
       return {

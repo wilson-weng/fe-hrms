@@ -26,7 +26,7 @@
 
 <script>
 
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import listView from '../components/listView.vue';
 
 export default {
@@ -39,7 +39,11 @@ export default {
   },
 
   methods: {
+    ...mapActions(['setCurrentCrew']),
     toCrewDetail(row){
+      console.log(row);
+      this.setCurrentCrew(row);
+      this.$router.push({path: '/crewDetail'});
     },
 
     deleteCrew(row){

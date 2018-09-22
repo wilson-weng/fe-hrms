@@ -2,6 +2,7 @@ import * as actions from '../actions/crew';
 import * as mutationTypes from '../constants/mutationTypes';
 
 const initState = {
+
   crew_list: [{
     id: 600001,
     real_name: '张三',
@@ -31,7 +32,7 @@ const initState = {
     work_days: '10天'
 
   }],
-  crew_selected: {
+  current_crew: {
     id: 1,
     real_name: '张三',
     phone: '18800009988',
