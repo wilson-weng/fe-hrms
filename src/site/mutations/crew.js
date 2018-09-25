@@ -3,43 +3,12 @@ import * as mutationTypes from '../constants/mutationTypes';
 
 const initState = {
 
-  crew_list: [{
-    id: 600001,
-    real_name: '张三',
-    phone: '18800009988',
-    enrolled_time: '2018年7月1日',
-    work_days: '10天'
-
-  },{
-    id: 600002,
-    real_name: '张三',
-    phone: '18800009988',
-    enrolled_time: '2018年7月1日',
-    work_days: '10天'
-
-  },{
-    id: 600003,
-    real_name: '张三',
-    phone: '18800009988',
-    enrolled_time: '2018年7月1日',
-    work_days: '10天'
-
-  },{
-    id: 600004,
-    real_name: '张三',
-    phone: '18800009988',
-    enrolled_time: '2018年7月1日',
-    work_days: '10天'
-
-  }],
-  current_crew: {
-    id: 1,
-    real_name: '张三',
-    phone: '18800009988',
-    enrolled_time: '2018年7月1日',
-    work_days: '10天'
-
-  }
+  crew_list: [],
+  current_crew: {},
+  crew_input_format: false,
+  crew_input_template: false,
+  crew_table_display: '',
+  crew_query_count: 0,
 };
 
 const getters = {
@@ -48,7 +17,16 @@ const getters = {
 
 const mutations = {
   [mutationTypes.SET_CREW_LIST](state, obj) {
-    state.crew_list = obj;
+    state.crew_list = JSON.parse(obj.result);
+    state.crew_table_display = obj.display_format;
+    state.crew_query_count = obj.count;
+  },
+  [mutationTypes.SET_CREW_INPUT](state, obj) {
+    state.crew_input_format = obj.input_format;
+    state.crew_input_template = obj.input_template;
+  },
+  [mutationTypes.DELETE_CREW](state, index) {
+    state.crew_list.splice(index, 1);
   },
   [mutationTypes.SET_CUR_CREW](state, obj) {
     state.current_crew = obj;

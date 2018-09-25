@@ -16,24 +16,15 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
-import crewDetailBaseInfo from '../components/crewDetail/crewDetailBaseInfo.vue';
-import crewDetailWageTable from '../components/crewDetail/crewDetailWageTable.vue';
-import crewDetailFineTable from '../components/crewDetail/crewDetailFineTable.vue';
+
+
+
+import crewDetailBaseInfo from '../components/crew/crewDetailBaseInfo.vue';
+import crewDetailWageTable from '../components/crew/crewDetailWageTable.vue';
+import crewDetailFineTable from '../components/crew/crewDetailFineTable.vue';
 
 export default {
-  components: { crewDetailBaseInfo, crewDetailWageTable, crewDetailFineTable},
-
-  data () {
-    return {}
-  },
-  computed: {
-    ...mapState({
-      current_crew: state => state.crew.current_crew,
-    }),
-  },
-  created(){
-    console.log(this.current_crew)
-  }
+  components: {crewDetailBaseInfo, crewDetailWageTable, crewDetailFineTable},
 }
+
 </script>

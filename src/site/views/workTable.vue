@@ -1,19 +1,6 @@
 <template>
   <div>
-    <el-card class="m-a-1" :body-style="{padding: 0}">
-      <el-row type="flex" class="p-a-1">
-        <el-col>
-          <div class="h2 m-b-tiny">员工导入
-            <span class="subtitle">当前员工100人（需求130人）</span>
-          </div>
-          <div class="h4">导入确认上岗的员工, 可选择单个导入或批量导入，批量导入请使用excel模板填写员工信息</div>
-        </el-col>
-        <el-col class="text-right">
-          <icon-button-vertical icon="el-icon-upload2" text="excel导入" class="inline-block"></icon-button-vertical>
-          <icon-button-vertical icon="el-icon-document" text="excel模版" class="inline-block"></icon-button-vertical>
-        </el-col>
-      </el-row>
-    </el-card>
+    <crew-work-table></crew-work-table>
     <wage-work-table></wage-work-table>
     <fine-work-table></fine-work-table>
     <el-card class="m-a-1" :body-style="{padding: 0}">
@@ -44,12 +31,13 @@
 
 <script>
 import iconButtonVertical from '../components/iconButtonVertical.vue';
-import FineWorkTable from '../components/fine/FineWorkTable.vue';
-import WageWorkTable from '../components/wage/WageWorkTable.vue';
+import FineWorkTable from '../components/fine/fineWorkTable.vue';
+import WageWorkTable from '../components/wage/wageWorkTable.vue';
+import CrewWorkTable from '../components/crew/crewWorkTable.vue';
 import { mapState } from 'vuex';
 
 export default {
-  components: { iconButtonVertical, FineWorkTable, WageWorkTable },
+  components: { iconButtonVertical, FineWorkTable, WageWorkTable, CrewWorkTable },
   computed: {
     ...mapState({
       recruitPage: state => state.apply.recruit_page,
