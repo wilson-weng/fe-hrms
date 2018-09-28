@@ -39,7 +39,7 @@ export const getWageRecords = ({ commit }, params) => {
     .then(response => response.json())
     .then(result => {
       if(result.status == 'ok'){
-        commit(mutationTypes.SET_WAGE_LIST, result.content);
+        commit(mutationTypes.SET_WAGE_LIST, result.data);
       }
       return result;
     });
@@ -54,6 +54,6 @@ export const exportWageRecords = ({ commit }, params) => {
   })
     .then(response => response.json())
     .then(result => {
-      return result.content;
+      return result.data;
     });
 };

@@ -39,7 +39,7 @@ export const getFineRecords = ({ commit }, params) => {
     .then(response => response.json())
     .then(result => {
       if(result.status == 'ok'){
-        commit(mutationTypes.SET_FINE_LIST, result.content);
+        commit(mutationTypes.SET_FINE_LIST, result.data);
       }
       return result;
     });
@@ -54,7 +54,7 @@ export const exportFineRecords = ({ commit }, params) => {
   })
     .then(response => response.json())
     .then(result => {
-      return result.content;
+      return result.data;
     });
 };
 

@@ -43,7 +43,7 @@ export const getCrewRecords = ({ commit }, params) => {
     .then(response => response.json())
     .then(result => {
       if(result.status == 'ok'){
-        commit(mutationTypes.SET_CREW_LIST, result.content);
+        commit(mutationTypes.SET_CREW_LIST, result.data);
       }
       return result;
     });
@@ -58,21 +58,32 @@ export const exportCrewRecords = ({ commit }, params) => {
   })
     .then(response => response.json())
     .then(result => {
-      return result.content;
+      return result.data;
     });
 };
 
 
-export const deleteCrewRecords = ({ commit }, params, rowIndex) => {
+export const deleteCrewRecords = ({ commit }, params) => {
   return fetch(`${urls.CREW_CRUD}?proj_id=${params.proj_id}&crew_id=${params.crew_id}`, {
     method: 'DELETE',
     credentials: 'include',
     headers: Utils.getFormHeader(),
   })
     .then(response => response.json())
+};
+
+
+export const updateCrewRecords = ({ commit }, params) => {
+  return fetch(`${urls.CREW_CRUD}`, {
+    method: 'PUT',
+    credentials: 'include',
+    headers: Utils.getFormHeader(),
+    body: Utils.getPostParams(params)
+  })
+    .then(response => response.json())
     .then(result => {
       if(result.status === 'ok'){
-        commit(mutationTypes.DELETE_CREW, rowIndex);
+        commit(mutationTypes.SET_CUR_CREW, result.content);
       }
       return result;
     });

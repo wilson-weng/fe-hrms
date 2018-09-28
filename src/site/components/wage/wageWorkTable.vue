@@ -20,17 +20,21 @@
         <el-button type="primary" @click="uploadWageData()">上传</el-button>
       </div>
     </el-dialog>
+    <el-dialog :visible.sync="showErrorDialog" width="80%">
+      <dialog-upload-errors :errors="uploadErrors" :total-count="totalUploadCount"></dialog-upload-errors>
+    </el-dialog>
   </el-card>
 </template>
 
 <script>
 import iconButtonVertical from '../iconButtonVertical.vue';
+import dialogUploadErrors from '../dialog/dialogUploadErrors.vue';
 import listView from '../listView.vue';
 import { downloadExcel, uploadExcel, loadTemplateString, loadFormatString } from '../../utils/excel';
 import { mapState, mapActions } from 'vuex';
 
 export default {
-  components: { iconButtonVertical, listView },
+  components: { iconButtonVertical, listView, dialogUploadErrors },
   computed: {
     ...mapState({
       currentProj: state => state.global.current_proj,
@@ -48,7 +52,10 @@ export default {
       uploadButtonId: 'wageUpload',
       downloadButtonId: 'wageTemplate',
       tablePage: 1,
-      uploadloading: false
+      uploadloading: false,
+      showErrorDialog: false,
+      uploadErrors: [],
+      totalUploadCount: 0
     }
   },
   mounted(){
@@ -75,14 +82,23 @@ export default {
         this.showExcelPreview = false;
         console.log(result);
         this.resetUpload();
-        result.status == 'ok' && this.$message({
-          message: '上传成功！可前往结算查询栏目查看',
-          type: 'success'
-        });
-        result.status != 'ok' && this.$message({
-          message: result.message,
-          type: 'error'
-        });
+        if(result.status == 'ok'){
+          if(result.data.errors.length == 0){
+            this.$message({
+              message: '上传成功！可前往结算查询栏目查看',
+              type: 'success'
+            });
+          }else{
+            this.uploadErrors = result.data.errors;
+            this.totalUploadCount = result.data.lines.length;
+            this.showErrorDialog = true;
+          }
+        }else{
+          this.$message({
+            message: result.msg,
+            type: 'error'
+          });
+        }
         this.uploadloading = false;
       })
     },

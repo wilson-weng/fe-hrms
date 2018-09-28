@@ -67,8 +67,6 @@ export default {
       });
       this.tableAttrs.push({prop: 'modify', attrName: '操作', buttons: [{
           onClick: this.viewCrewRecord, text: '详情'
-        },{
-          onClick: this.deleteCrewRecord, text: '撤销'
         }]})
     })
   },
@@ -76,17 +74,6 @@ export default {
     ...mapActions(['getCrewRecords','exportCrewRecords', 'deleteCrewRecords', 'setCurrentCrew']),
     onPageChange(page){
       this.query(page);
-    },
-    deleteCrewRecord(row, index){
-      this.currentRow = row;
-      this.currentRowIndex = index;
-      this.showConfirmDeleteDialog = true;
-    },
-    confirmDelete(){
-      this.deleteCrewRecords({proj_id: this.currentProj.id, crew_id: this.currentRow.id}, this.currentRowIndex).then(()=>{
-        this.showConfirmDeleteDialog = false;
-        this.$message({message: '记录已撤销，如要恢复请重新上传', type: 'success'})
-      })
     },
     onFilterClick(){
       this.query(1);

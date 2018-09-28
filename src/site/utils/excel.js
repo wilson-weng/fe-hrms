@@ -128,3 +128,19 @@ export const loadFormatString = (text) => {
   }
   return result;
 };
+
+export const loadFormatStringKeys = (text) => {
+  let result = [];
+  if(!text) return result;
+  if(text.indexOf('|') > 0){
+    text.split(',').map(item =>{
+      if(item.indexOf('|') > 0){
+        let pair = item.split('|');
+        result.push(pair[0]);
+      }else{
+        result.push(item);
+      }
+    })
+  }
+  return result;
+};

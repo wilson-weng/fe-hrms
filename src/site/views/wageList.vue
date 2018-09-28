@@ -112,14 +112,14 @@
       },
       exportWages(){
         this.exportWageRecords({proj_id: this.currentProj.id, filters: JSON.stringify(this.filters)}).then(content=>{
-          downloadExcel('异常明细', JSON.parse(content.result), 'xlsx', 'wageDownload')
+          downloadExcel('结算明细', JSON.parse(content.result), 'xlsx', 'wageDownload')
         })
       },
       getDownloadFileName(){
         if(this.dateRange){
-          return `赔付明细${this.dateRange[0].toDateString()}-${this.dateRange[1].toDateString()}.xlsx`
+          return `结算明细${this.dateRange[0].toDateString()}-${this.dateRange[1].toDateString()}.xlsx`
         }else{
-          return '赔付明细（最新500条）.xlsx'
+          return '结算明细（最新500条）.xlsx'
         }
       }
     },
