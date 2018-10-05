@@ -14,7 +14,7 @@
       <el-pagination
         layout="prev, pager, next"
         :current-page.sync="currentPage"
-        :total="pages * 10" @current-change="onCurrentPageChange()">
+        :total="pages * (this.pageSize? this.pageSize : 10)" @current-change="onCurrentPageChange()">
       </el-pagination>
     </div>
   </div>
@@ -23,7 +23,7 @@
 
 <script>
   export default {
-    props: ['tableAttrs', 'tableData', 'pages', 'onPageChange'],
+    props: ['tableAttrs', 'tableData', 'pages', 'onPageChange', 'pageSize'],
     created() {
     },
     data() {

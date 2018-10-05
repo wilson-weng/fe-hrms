@@ -14,7 +14,7 @@
       </el-col>
     </el-row>
     <el-dialog :visible.sync="showExcelPreview" title="结算数据预览" :before-close="resetUpload" width="80%">
-      <list-view  v-loading="uploadloading"  :table-attrs="previewTableAttr" :table-data="previewTablePageData"  :pages="getTableTotalPage()" :on-page-change="getPreviewTableDataByPage" v-if="showExcelPreview"></list-view>
+      <list-view  v-loading="uploadloading"  :table-attrs="previewTableAttr" :table-data="previewTablePageData"  :pages="getTableTotalPage()" :on-page-change="getPreviewTableDataByPage" :page-size="5" v-if="showExcelPreview"></list-view>
       <div slot="footer" class="dialog-footer">
         <el-button @click="closePreview()">取消</el-button>
         <el-button type="primary" @click="uploadWageData()">上传</el-button>

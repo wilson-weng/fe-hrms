@@ -7,8 +7,11 @@ import store from './store'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import './site/styles/index.scss';
+import vueScrollTo from 'vue-scroll-to';
+
+Vue.use(vueScrollTo, options);
 
 
-Vue.use(ElementUI)
+Vue.use(ElementUI);
 // eslint-disable-next-line
-new Vue({ ...App, router, store }).$mount('#app')
+new Vue({ ...App, router, store }).$mount('#app');

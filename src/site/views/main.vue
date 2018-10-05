@@ -52,7 +52,7 @@
     mounted(){
       this.showProjBar = !!this.currentProj.id;
       if(!this.currentProj.id){
-        this.$router.push('proj');
+        this.$router.push('/proj');
       }
     }
   }

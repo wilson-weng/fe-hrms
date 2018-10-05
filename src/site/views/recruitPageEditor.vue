@@ -1,82 +1,68 @@
 <template>
   <el-card class="m-a-1">
-    <div class="clearfix" slot="header">
-      <span>招募贴编辑</span>
-      <el-button class="pull-right color-text-hint" type="text" style="padding: 7px;" @click="goBack()">关闭</el-button>
-    </div>
-    <el-row>
+    <el-row :gutter="10">
       <el-col :span="12">
-        <label>分享标题:</label>
-        <el-input v-model="title" style="width: 220px;" placeholder="请设置分享标题"></el-input>
+        <el-tabs v-model="activePanel">
+          <el-tab-pane label="项目介绍" name="1"></el-tab-pane>
+          <el-tab-pane label="项目亮点" name="2"></el-tab-pane>
+          <el-tab-pane label="工作详情" name="3"></el-tab-pane>
+          <el-tab-pane label="分享设置" name="4"></el-tab-pane>
+          <div v-if="activePanel == '1'">
+            <proj-info-editor></proj-info-editor>
+          </div>
+          <div v-if="activePanel == '2'">
+            <proj-highlight-editor></proj-highlight-editor>
+          </div>
+          <div v-if="activePanel == '3'">
+            <proj-content-editor></proj-content-editor>
+          </div>
+        </el-tabs>
       </el-col>
-      <el-col :span="12">
-        <upLoad style="display: inline-block;" autoUpload :fileType="'pic'" @uploadSuccess="uploadSuccess"></upLoad> <span v-if="!imgShow">（建议图片尺寸：700*390）</span><a :href="mainUrl" style="text-decoration: none;" target="_blank" v-if="imgShow">查看图片</a>
-      </el-col>
+      <el-col :span="12"></el-col>
     </el-row>
-    <div class="m-t-1">
-      <div id="editor-menu" style="border: 1px solid #ccc; margin-bottom: -1px;"></div>
-      <div id="editor-content" style="border: 1px solid #ccc; height: 600px;"></div>
-    </div>
-    <div class="m-t-1 text-right">
-      <el-button type="primary" @click="submit()">提交</el-button>
-      <el-button type="warning" @click="goBack()">取消</el-button>
-    </div>
   </el-card>
 </template>
 
 <script>
   import { mapState, mapActions } from 'vuex';
-  import E from 'wangeditor';
-  import upLoad from '../components/upload.vue';
+  import ProjInfoEditor from "src/site/components/recruit/projInfoEditor";
+  import ProjContentEditor from "src/site/components/recruit/projContentEditor";
+  import ProjHighlightEditor from "src/site/components/recruit/projHighlightEditor";
 
 
   export default {
-    components: { upLoad },
+    components: {ProjHighlightEditor, ProjContentEditor, ProjInfoEditor },
 
     computed: {
       ...mapState({
+        currentProj: state => state.global.current_proj,
       }),
-    },
-
-    methods: {
-      ...mapActions([]),
-      uploadSuccess(url) {
-        this.mainUrl = url;
-        this.imgShow = true;
-      },
-      goBack(){
-        window.history.back();
-      }
     },
 
     data() {
       return {
-        loading: false,
-        tableData: [],
-        curPage: 1,
-        count: 10,
-        curMode: '',
-        curIndex: '',
-        curActivity: {},
-        title: '',
-        mainUrl: '',
-        imgShow: false,
-        editorShow: false,
-        editor: null,
-        editorContent: '',
+        activePanel: '1',
       }
     },
 
-    mounted() {
-      this.$nextTick(() => {
-        this.editor = new E('#editor-menu', '#editor-content');
-        this.editor.customConfig.onchange = (html) => {
-          this.editorContent = html;
-          console.log(this.editorContent);
-        };
-        this.editor.create();
-        this.editor.txt.html(this.editorContent);
-      });
-    }
+
   }
 </script>
+
+<style>
+  .el-tag + .el-tag {
+    margin-left: 10px;
+  }
+  .button-new-tag {
+    margin-left: 10px;
+    height: 32px;
+    line-height: 30px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .input-new-tag {
+    width: 90px;
+    margin-left: 10px;
+    vertical-align: bottom;
+  }
+</style>

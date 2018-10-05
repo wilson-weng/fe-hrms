@@ -26,6 +26,8 @@
     "ramda": "~0.25.0",
     "vue": "~2.5.16",
     "vue-router": "~2.8.1",
+    "vue-scroll-to": "^2.2.1",
+    "vuedraggable": "^2.16.0",
     "vuex": "~2.5.0",
     "wangeditor": "^3.0.15",
     "whatwg-fetch": "^2.0.3",

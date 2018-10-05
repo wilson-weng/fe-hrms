@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-row>
-      <el-col :span="12"  v-for='item in Object.keys(currentCrew)'>
+      <el-col :span="12"  v-for='item in Object.keys(currentCrew)' :key="item">
         <info-list-item :title="item" :value="currentCrew[item]" :key="item"></info-list-item>
       </el-col>
     </el-row>
@@ -23,7 +23,7 @@
       width="30%"
       title="修改员工信息">
       <el-form label-position="right" label-width="100px" :model="updatedCrew">
-        <el-form-item v-for="item in updateInputList" :label="item + ': '">
+        <el-form-item v-for="item in updateInputList" :label="item + ': '" :key="item">
           <el-input
             v-model="updatedCrew[item]">
           </el-input>
