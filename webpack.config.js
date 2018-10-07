@@ -25,7 +25,7 @@ const names = {
   js: 'static/js/[name].[chunkhash:8].js',
 }
 
-const publicPath = `//fe.imdada.cn/${process.env.npm_package_name}/`
+const publicPath = `//localhost:5000/${process.env.npm_package_name}/`
 
 const common = {
   entry: {

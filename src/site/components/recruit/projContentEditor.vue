@@ -44,7 +44,7 @@
       </el-form>
     </el-dialog>
     <el-dialog
-      :visible.sync="showConfirmDeleteDialog"
+      :visible.sync="showConfirmDeleteDialog" :before-close="beforeCloseEditor"
       width="30%">
       <span>点击确认删除该条目。</span>
       <span slot="footer" class="dialog-footer">
@@ -63,6 +63,7 @@
 
   export default {
     name: "projContentEditor",
+    props: ['onUpdate'],
     components: { RichTextEditor, draggable},
     computed: {
       ...mapState({
@@ -105,12 +106,13 @@
           this.getProjContent(this.currentProj.id).then(result=>{
             this.projContent = result;
             this.$message({message: '更新成功！', type: 'success'});
+            this.onUpdate(params)
           });
           this.showEditor = false;
         })
       },
       showEditorHandler(item){
-        this.richtext = item;
+        this.richtext = JSON.parse(JSON.stringify(item));
         this.showEditor = true;
       },
       showDeleteHandler(item){
@@ -129,9 +131,13 @@
       onDragItemHandle(){
         this.projContent.detail.map((item, index)=>{
           item.sequence = index;
-          item.rich_text_id = item.id
+          item.rich_text_id = item.id;
           this.createRichText(item);
         })
+      },
+      beforeCloseEditor(done){
+        this.richtext = {};
+        done();
       }
     },
 

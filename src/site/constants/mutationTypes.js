@@ -15,6 +15,7 @@ export const SET_CREW_INPUT = 'SET_CREW_INPUT';
 export const DELETE_CREW = 'DELETE_CREW';
 
 export const SET_APPLY_LIST = 'SET_APPLY_LIST';
+export const DELETE_APPLY = 'DELETE_APPLY';
 export const SET_PROJECT_LIST = 'SET_PROJECT_LIST';
 
 

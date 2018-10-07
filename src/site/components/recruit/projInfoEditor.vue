@@ -66,7 +66,7 @@
 
   export default {
     components: {ImgSquare, imgUploader },
-
+    props: ['onUpdate'],
     computed: {
       ...mapState({
         currentProj: state => state.global.current_proj,
@@ -115,6 +115,7 @@
           this.projModel.tags = this.tags.join(',');
           this.updateProjBasicInfo(this.projModel).then(()=>{
             this.loading = false;
+            this.onUpdate(this.projModel)
           })
         }, 1000)
       },

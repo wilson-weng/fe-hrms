@@ -47,6 +47,7 @@
 
   export default {
     name: "projHighlightEditor",
+    props: ['onUpdate'],
     components: { RichTextEditor},
     computed: {
       ...mapState({
@@ -81,6 +82,7 @@
           this.getProjContent(this.currentProj.id).then(result=>{
             this.highlight = result.highlight;
             this.$message({message: '更新成功！', type: 'success'});
+            this.onUpdate(this.highlight);
           });
           this.showEditor = false;
         })

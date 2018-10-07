@@ -8266,10 +8266,6 @@ vue-router@~2.8.1:
   version "2.8.1"
   resolved "http://registry.npm.taobao.org/vue-router/download/vue-router-2.8.1.tgz#9833c9ee57ac83beb0269056fefee71713f20695"
 
-vue-scroll-to@^2.2.1:
-  version "2.2.1"
-  resolved "http://registry.npm.taobao.org/vue-scroll-to/download/vue-scroll-to-2.2.1.tgz#a4c16abd541f15b34b791c43c3f32b1ad25c149d"
-
 vue-style-loader@^4.0.1:
   version "4.1.2"
   resolved "http://registry.npm.taobao.org/vue-style-loader/download/vue-style-loader-4.1.2.tgz#dedf349806f25ceb4e64f3ad7c0a44fba735fcf8"

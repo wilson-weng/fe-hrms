@@ -57,7 +57,7 @@ export default {
       currentRow: {},
       currentRowIndex: 0,
       searchKey: '',
-      showDetailDialog: false
+      showDetailDialog: false,
     }
   },
   created(){

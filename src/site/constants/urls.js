@@ -13,6 +13,9 @@ export const PROJ_CONTENT = `${domain}/proj/content`;
 export const PROJ_RICHTEXT = `${domain}/proj/richtext`;
 export const PROJ_PIC = `${domain}/proj/pic`;
 
+export const APPLY_CRUD = `${domain}/wxApply`;
+
+
 export const IMG_UPLOAD = `${domain}/img/upload`;
 
 export const IMG_PREFIX = `${domain}/static/images/`
