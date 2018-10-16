@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import Vue from 'vue/dist/vue.js'
 import VueRouter from 'vue-router'
 import login from './site/views/login.vue'
 import proj from './site/views/projList.vue'
@@ -73,5 +73,10 @@ const router = new VueRouter({
   mode: 'hash',
   routes: routes,
 })
+
+router.beforeEach((to, from, next) => {
+  let store = router.app.$options.store;
+  store.dispatch('getPageConfigure', {page_url: to.path}).then(()=>next());
+});
 
 export default router

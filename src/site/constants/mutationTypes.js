@@ -18,4 +18,6 @@ export const SET_APPLY_LIST = 'SET_APPLY_LIST';
 export const DELETE_APPLY = 'DELETE_APPLY';
 export const SET_PROJECT_LIST = 'SET_PROJECT_LIST';
 
+export const SET_PAGE_CONF = 'SET_PAGE_CONF';
+
 

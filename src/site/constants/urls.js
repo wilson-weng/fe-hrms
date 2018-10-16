@@ -20,3 +20,9 @@ export const IMG_UPLOAD = `${domain}/img/upload`;
 
 export const IMG_PREFIX = `${domain}/static/images/`
 
+
+export const FE_CONFIGURE = `${domain}/feconfigure`
+
+export const DATA_QUERY = `${domain}/data/query`
+
+

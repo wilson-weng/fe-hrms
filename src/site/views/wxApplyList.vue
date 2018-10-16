@@ -13,13 +13,13 @@
               :value="item.value">
             </el-option>
           </el-select>
-          <el-button icon="el-icon-search" size="small" @click="query(1)"></el-button>
+          <el-button icon="el-icon-search" size="small" @click="onFilterClick()"></el-button>
           <el-button style="float: right;" size="small" @click="exportApplys()">导出名单</el-button>
           <a href="" :download="getDownloadFileName()" id="applyDownload"></a>
 
         </div>
       </div>
-      <list-view :table-attrs="tableAttrs" :table-data="applyList" :pages="Math.ceil(applyQueryCount/10)" :on-page-change="onPageChange"></list-view>
+      <list-view v-if='reloadTable' :table-attrs="tableAttrs" :table-data="applyList" :pages="Math.ceil(applyQueryCount/10)" :on-page-change="onPageChange"></list-view>
       <el-dialog
         :visible.sync="showConfirmDeleteDialog"
         width="30%">
@@ -76,7 +76,7 @@
     },
     data() {
       return {
-        tableAttrs: '',
+        tableAttrs: [],
         showConfirmDeleteDialog: false,
         showConfirmDialog: false,
         currentRow: {},
@@ -89,7 +89,8 @@
         ],
         status: 0,
         page: 1,
-        startDate: ''
+        startDate: '',
+        reloadTable: true
       }
     },
     created(){
@@ -126,8 +127,11 @@
         })
       },
       onFilterClick(){
-        this.query(1);
-        this.getTableAttrs();
+        this.reloadTable = false;
+        this.query(1, ()=>{
+            this.getTableAttrs();
+            this.reloadTable = true;
+          });
       },
       viewApplyRecord(row){
         this.setCurrentCrew(row);
@@ -158,10 +162,10 @@
             onClick: this.viewApplyRecord, text: '详情'
           }]});
         if(this.status == 1){
-          attrs.push({prop: 'entry_status', attrName: '申请状态'});
-          attrs.push({prop: 'start_time', attrName: '开工时间'});
+          attrs.push({prop: '申请状态', attrName: '申请状态'});
+          attrs.push({prop: '开工时间', attrName: '开工时间'});
         }else if(this.status == 2){
-          attrs.push({prop: 'entry_status', attrName: '申请状态'});
+          attrs.push({prop: '申请状态', attrName: '申请状态'});
         }else{
           attrs.push({prop: 'modify', attrName: '操作', buttons: [{
               onClick: this.confirmApplyRecord, text: '通过'

@@ -1,44 +1,20 @@
 import * as mutationTypes from '../constants/mutationTypes';
 import * as urls from '../constants/urls';
-import * as Utils from '../utils';
-
-export const getFineIoFormat = ({ commit }, projId) => {
-  return fetch(`${urls.FINE_INPUT_FORMAT}?proj_id=${projId}`, {
-    method: 'GET',
-    credentials: 'include',
-    headers: Utils.getFormHeader(),
-  })
-    .then(response => response.json())
-    .then(result => {
-      if(result.status == 'ok'){
-        commit(mutationTypes.SET_FINE_INPUT, result.content);
-      }
-      return result;
-    });
-};
-
+import axios from 'axios';
 
 
 export function createFineRecords({ commit }, params){
-  return fetch(`${urls.FINE_CRUD}`,{
-    method: 'POST',
-    credentials: 'include',
-    headers: Utils.getFormHeader(),
-    body: Utils.getPostParams(params)
-  })
-    .then(response => response.json())
+  return axios.post(`${urls.FINE_CRUD}`, params)
+    .then(response => response.data)
 }
 
 
-export const getFineRecords = ({ commit }, params) => {
-  return fetch(`${urls.FINE_CRUD}?page=${params.page}&proj_id=${params.proj_id}&filters=${params.filters}`, {
-    method: 'GET',
-    credentials: 'include',
-    headers: Utils.getFormHeader(),
-  })
-    .then(response => response.json())
+export const getFineRecords = ({ commit }, filters) => {
+  let options = '{"module":"fine","query":"list_fine_by_occur_time_desc","attrs":["meta_data","crew_base_info","occur_time_str"]}';
+  return axios.get(`${urls.DATA_QUERY}?filters=${JSON.stringify(filters)}&options=${options}`)
+    .then(response => response.data)
     .then(result => {
-      if(result.status == 'ok'){
+      if(result.status === 'ok'){
         commit(mutationTypes.SET_FINE_LIST, result.data);
       }
       return result;
@@ -46,29 +22,12 @@ export const getFineRecords = ({ commit }, params) => {
 };
 
 
-export const exportFineRecords = ({ commit }, params) => {
-  return fetch(`${urls.FINE_CRUD}?page=0&proj_id=${params.proj_id}&filters=${params.filters}`, {
-    method: 'GET',
-    credentials: 'include',
-    headers: Utils.getFormHeader(),
-  })
-    .then(response => response.json())
-    .then(result => {
-      return result.data;
-    });
-};
-
-
-export const deleteFineRecords = ({ commit }, params, rowIndex) => {
-  return fetch(`${urls.FINE_CRUD}?proj_id=${params.proj_id}&fine_id=${params.fine_id}`, {
-    method: 'DELETE',
-    credentials: 'include',
-    headers: Utils.getFormHeader(),
-  })
-    .then(response => response.json())
+export const deleteFineRecords = ({ commit }, params) => {
+  return axios.delete(`${urls.FINE_CRUD}?fine_id=${params.fine_id}`)
+    .then(response => response.data)
     .then(result => {
       if(result.status === 'ok'){
-        commit(mutationTypes.DELETE_FINE, rowIndex);
+        commit(mutationTypes.DELETE_FINE, params.rowIndex);
       }
       return result;
     });

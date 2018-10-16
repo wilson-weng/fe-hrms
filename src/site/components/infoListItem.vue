@@ -1,7 +1,7 @@
 <template>
-  <div class="info-list-item">
+  <el-row class="info-list-item">
     <div class="info-title">{{title}}:</div><div class="info-value">{{value}}</div>
-  </div>
+  </el-row>
 </template>
 
 <script>

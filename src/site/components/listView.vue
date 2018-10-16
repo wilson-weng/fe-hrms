@@ -1,20 +1,26 @@
 <template>
   <div>
-    <el-table :data="tableData" :header-cell-style="headerCellStyle" :cell-style="cellStyle">
-      <el-table-column v-for="attr in tableAttrs" :key="attr.prop" v-if="attr.buttons" :width="attr.width"
-        :label="attr.attrName">
-        <template slot-scope="scope">
-          <el-button @click="btn.onClick(scope.row, scope.$index)" type="text" size="small" v-for="btn in attr.buttons" :key="btn.text">{{btn.text}}</el-button>
-        </template>
-      </el-table-column>
-      <el-table-column v-else :prop="attr.prop" :label="attr.attrName" :width="attr.width">
-      </el-table-column>
-    </el-table>
+    <v-table
+      is-horizontal-resize
+      style="width:100%"
+      :columns="tableColumns"
+      title-align="center"
+      column-align="center"
+      :row-height="60"
+      :title-row-height="60"
+      :show-vertical-border="false"
+      :show-horizontal-border="false"
+      :table-data="tableData"
+      title-bg-color="#F9FBFD"
+      row-hover-color="#f5f5f5"
+      row-click-color="#edf7ff"
+      @on-custom-comp="onCustomCompHandle"
+    ></v-table>
     <div class="pagination-container">
       <el-pagination
         layout="prev, pager, next"
         :current-page.sync="currentPage"
-        :total="pages * (this.pageSize? this.pageSize : 10)" @current-change="onCurrentPageChange()">
+        :total="pages * (pageSize? pageSize : 10)" @current-change="onCurrentPageChange()">
       </el-pagination>
     </div>
   </div>
@@ -23,31 +29,36 @@
 
 <script>
   export default {
-    props: ['tableAttrs', 'tableData', 'pages', 'onPageChange', 'pageSize'],
-    created() {
+    props: ['columns', 'tableData', 'pages', 'onPageChange', 'pageSize', 'onCustomComp'],
+
+    computed: {
+      tableColumns: function(){
+        return this.columns.map((item,index)=>{
+          !item.isResize && (item.isResize = true);
+          !item.width && (item.width = 100);
+          return item;
+        })
+      }
     },
     data() {
       return {
-        currentPage: 1
+        currentPage: 1,
       }
     },
-    methods: {
-      cellStyle({row, column, rowIndex, columnIndex}){
-        if(columnIndex == 0){
-          return {paddingLeft: '12px'}
-        }
-      },
-      headerCellStyle({row, column, rowIndex, columnIndex}){
-        if(columnIndex == 0){
-          return {background:'#F9FBFD', paddingLeft: '12px'}
-        }else {
-          return {background:'#F9FBFD'};
-        }
-      },
+    methods:{
       onCurrentPageChange(){
         this.onPageChange(this.currentPage);
+      },
+      onCustomCompHandle(val){
+        this.onCustomComp && this.onCustomComp(val)
       }
     }
   }
 </script>
 
+<style scoped>
+  .v-table-class {
+    border: none
+  }
+
+</style>

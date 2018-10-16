@@ -14,7 +14,7 @@
       </el-col>
     </el-row>
     <el-dialog :visible.sync="showExcelPreview" title="异常上传预览" :before-close="resetUpload" width="80%">
-      <list-view :table-attrs="previewTableAttr" :table-data="previewTablePageData"  :pages="getTableTotalPage()" :on-page-change="getPreviewTableDataByPage" :page-size="5" v-if="showExcelPreview"></list-view>
+      <list-view :columns="previewTableAttr" :table-data="previewTablePageData"  :pages="getTableTotalPage()" :on-page-change="getPreviewTableDataByPage" :page-size="5" v-if="showExcelPreview"></list-view>
       <div slot="footer" class="dialog-footer">
         <el-button @click="closePreview()">取消</el-button>
         <el-button type="primary" @click="uploadFineData()">上传</el-button>
@@ -30,7 +30,7 @@
 import iconButtonVertical from '../iconButtonVertical.vue';
 import dialogUploadErrors from '../dialog/dialogUploadErrors.vue';
 import listView from '../listView.vue';
-import { downloadExcel, uploadExcel, loadTemplateString, loadFormatString } from '../../utils/excel';
+import { downloadExcel, uploadExcel, loadTemplateString, loadFormatString, loadDataByFormat } from '../../utils/excel';
 import { mapState, mapActions } from 'vuex';
 
 export default {
@@ -38,8 +38,6 @@ export default {
   computed: {
     ...mapState({
       currentProj: state => state.global.current_proj,
-      fineInputFormat: state => state.fine.fine_input_format,
-      fineInputTemplate: state => state.fine.fine_input_template,
     }),
   },
   data () {
@@ -54,11 +52,14 @@ export default {
       tablePage: 1,
       showErrorDialog: false,
       uploadErrors: [],
-      totalUploadCount: 0
+      totalUploadCount: 0,
+      remoteConfig: {
+        fineInputFormat: '',
+        fineInputTemplate: ''
+      }
     }
   },
   mounted(){
-    (!this.fineInputFormat || !this.fineInputTemplate) && this.getFineIoFormat(this.currentProj.id);
     this.uploadButton = document.getElementById('fineUpload')
   },
   methods: {
@@ -68,14 +69,16 @@ export default {
     },
     selectUploadFile(){
       uploadExcel(this.uploadButton).then(lines => {
-        this.previewTableAttr = loadFormatString(this.fineInputFormat);
+        this.previewTableAttr = loadFormatString(this.remoteConfig.fineInputFormat);
         this.previewTableData = lines;
         this.getPreviewTableDataByPage(1);
         this.showExcelPreview = true;
       });
     },
     uploadFineData(){
-      this.createFineRecords({proj_id: this.currentProj.id, lines: JSON.stringify(this.previewTableData)}).then(result =>{
+      let rawData = this.previewTableData;
+      let data = loadDataByFormat(rawData, this.remoteConfig.fineInputFormat);
+      this.createFineRecords({proj_id: this.currentProj.id, lines: JSON.stringify(data)}).then(result =>{
         this.showExcelPreview = false;
         this.resetUpload();
         if(result.status == 'ok'){
@@ -85,7 +88,10 @@ export default {
               type: 'success'
             });
           }else{
-            this.uploadErrors = result.data.errors;
+            this.uploadErrors = result.data.errors.map(item=>{
+              item.content = rawData[item.line_index-1];
+              return item;
+            });
             this.totalUploadCount = result.data.lines.length;
             this.showErrorDialog = true;
           }
@@ -112,8 +118,8 @@ export default {
       done && done();
     },
     downloadFineTemplate(){
-      if(this.fineInputTemplate) {
-        downloadExcel('异常导入模板', [loadTemplateString(this.fineInputTemplate)], 'xlsx', 'fineTemplate')
+      if(this.remoteConfig.fineInputTemplate) {
+        downloadExcel('异常导入模板', [loadTemplateString(this.remoteConfig.fineInputTemplate)], 'xlsx', 'fineTemplate')
       }
     },
   }

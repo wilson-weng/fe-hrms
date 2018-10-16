@@ -120,9 +120,25 @@ export const loadFormatString = (text) => {
     text.split(',').map(item =>{
       if(item.indexOf('|') > 0){
         let pair = item.split('|');
-        result.push({attrName: pair[0], prop: pair[0]});
+        result.push({title: pair[0], field: pair[0]});
       }else{
-        result.push({attrName: item, prop: item});
+        result.push({title: item, field: item});
+      }
+    })
+  }
+  return result;
+};
+
+export const getTranslateObj = (text) => {
+  let result = [];
+  if(!text) return result;
+  if(text.indexOf('|') > 0){
+    text.split(',').map(item =>{
+      if(item.indexOf('|') > 0){
+        let pair = item.split('|');
+        result.push({back: pair[1], front: pair[0]});
+      }else{
+        result[item] = result.push({back: item, front: item});
       }
     })
   }
@@ -143,4 +159,30 @@ export const loadFormatStringKeys = (text) => {
     })
   }
   return result;
+};
+
+export const translateDataByFormat = (data, format) => {
+  let formatList = getTranslateObj(format);
+  return data.map(item=>{
+    let result = {};
+    for(let f of formatList){
+      if(item[f.back]){
+        result[f.front] = item[f.back]
+      }
+    }
+    return result
+  })
+};
+
+export const loadDataByFormat = (data, format) => {
+  let formatList = getTranslateObj(format);
+  return data.map(item=>{
+    let result = {};
+    for(let f of formatList){
+      if(item[f.front]){
+        result[f.back] = item[f.front]
+      }
+    }
+    return result;
+  })
 };

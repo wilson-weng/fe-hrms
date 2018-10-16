@@ -1,7 +1,7 @@
 <template>
   <div>
     <span>导入{{totalCount}}条数据，成功{{successCount}}条，失败{{errorCount}}条，失败记录如下：</span>
-    <list-view :table-attrs="tableAttr" :table-data="tablePageData"  :pages="getTableTotalPage()" :on-page-change="getPreviewTableDataByPage"></list-view>
+    <list-view :columns="tableAttr" :table-data="tablePageData"  :pages="getTableTotalPage()" :on-page-change="getPreviewTableDataByPage"></list-view>
   </div>
 </template>
 
@@ -24,19 +24,24 @@
   data() {
     return {
       currentPage: 1,
-      tablePageData: this.errors.slice(0, 5),
+      tablePageData: [],
       tableAttr: [{
-        prop: 'line_index',
-        attrName: '第几行',
-        width: 100
+        field: 'line_index',
+        title: '第几行',
+        width: '100'
       }, {
-        prop: 'content_shortcut',
-        attrName: '内容'
+        field: 'message',
+        title: '错误信息',
+        width: '200'
       }, {
-        prop: 'message',
-        attrName: '错误信息'
+        field: 'content',
+        title: '内容',
+        width: '500'
       }]
     }
+  },
+  created(){
+    this.tablePageData = this.errors.slice(0, 5);
   },
   methods: {
     getPreviewTableDataByPage(page){
