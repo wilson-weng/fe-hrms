@@ -12,7 +12,6 @@ const getters = {
 
 const mutations = {
   [mutationTypes.SET_FINE_LIST](state, obj) {
-    console.log(obj)
     state.fine_list = obj.datas;
     state.fine_total_count = obj.total_count;
   },

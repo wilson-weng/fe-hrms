@@ -10,6 +10,7 @@ const initState = {
     real_name: '王经理',
     phone: '18898323455'
   },
+  org_id: 1,
   page_config: {}
 };
 

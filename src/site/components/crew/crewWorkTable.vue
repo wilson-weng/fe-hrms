@@ -14,14 +14,10 @@
       </el-col>
     </el-row>
     <el-dialog :visible.sync="showExcelPreview" title="员工导入预览" :before-close="resetUpload" width="80%">
-      <list-view :table-attrs="previewTableAttr" :table-data="previewTablePageData"  :pages="getTableTotalPage()" :on-page-change="getPreviewTableDataByPage" :page-size="5" v-if="showExcelPreview"></list-view>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="closePreview()">取消</el-button>
-        <el-button type="primary" @click="uploadCrewData()">上传</el-button>
-      </div>
+      <dialog-preview-table :columns="previewTableAttr" :preview-data="previewTableData" :on-close="closePreview" :on-upload="uploadCrewData"></dialog-preview-table>
     </el-dialog>
     <el-dialog :visible.sync="showErrorDialog" width="80%">
-      <dialog-upload-errors :errors="uploadErrors" :total-count="totalUploadCount"></dialog-upload-errors>
+      <dialog-upload-errors :errors="uploadErrors" :total-count="previewTableData.length"></dialog-upload-errors>
     </el-dialog>
   </el-card>
 </template>
@@ -29,17 +25,17 @@
 <script>
 import iconButtonVertical from '../iconButtonVertical.vue';
 import dialogUploadErrors from '../dialog/dialogUploadErrors.vue';
+import dialogPreviewTable from '../dialog/dialogPreviewTable.vue';
 import listView from '../listView.vue';
-import { downloadExcel, uploadExcel, loadTemplateString, loadFormatString } from '../../utils/excel';
+import { downloadExcel, uploadExcel, loadTemplate, loadDataByFormat, loadFormatKeyToColumns } from '../../utils/excel';
 import { mapState, mapActions } from 'vuex';
 
 export default {
-  components: { iconButtonVertical, listView, dialogUploadErrors },
+  name: "crewWorkTable",
+  components: { iconButtonVertical, listView, dialogUploadErrors, dialogPreviewTable },
   computed: {
     ...mapState({
       currentProj: state => state.global.current_proj,
-      crewInputFormat: state => state.crew.crew_input_format,
-      crewInputTemplate: state => state.crew.crew_input_template,
     }),
   },
   data () {
@@ -47,35 +43,36 @@ export default {
       showExcelPreview: false,
       previewTableAttr: {},
       previewTableData: [],
-      previewTablePageData: [],
       uploadButton: null,
       uploadButtonId: 'crewUpload',
       downloadButtonId: 'crewTemplate',
-      tablePage: 1,
       showErrorDialog: false,
       uploadErrors: [],
-      totalUploadCount: 0
+      remoteConfig: {
+        crewInputFormat: '',
+        crewInputTemplate: '',
+      }
     }
   },
   mounted(){
-    (!this.crewInputFormat || !this.crewInputTemplate) && this.getCrewIoFormat(this.currentProj.id);
     this.uploadButton = document.getElementById('crewUpload')
   },
   methods: {
-    ...mapActions(['getCrewIoFormat', 'createCrewRecords']),
+    ...mapActions(['createCrewRecords']),
     triggerCrewUpload(){
       this.uploadButton.click();
     },
     selectUploadFile(){
       uploadExcel(this.uploadButton).then(lines => {
-        this.previewTableAttr = loadFormatString(this.crewInputFormat);
+        this.previewTableAttr = loadFormatKeyToColumns(this.remoteConfig.crewInputFormat);
         this.previewTableData = lines;
-        this.getPreviewTableDataByPage(1);
         this.showExcelPreview = true;
       });
     },
     uploadCrewData(){
-      this.createCrewRecords({proj_id: this.currentProj.id, lines: JSON.stringify(this.previewTableData)}).then(result =>{
+      let rawData = this.previewTableData;
+      let data = loadDataByFormat(rawData, this.remoteConfig.crewInputFormat);
+      this.createCrewRecords({proj_id: this.currentProj.id, lines: JSON.stringify(data)}).then(result =>{
         this.showExcelPreview = false;
         this.resetUpload();
         if(result.status == 'ok'){
@@ -85,8 +82,10 @@ export default {
               type: 'success'
             });
           }else{
-            this.uploadErrors = result.data.errors;
-            this.totalUploadCount = result.data.lines.length;
+            this.uploadErrors = result.data.errors.map(item=>{
+              item.content = rawData[item.line_index-1];
+              return item;
+            });
             this.showErrorDialog = true;
           }
         }else{
@@ -97,12 +96,6 @@ export default {
         }
       })
     },
-    getPreviewTableDataByPage(page){
-      this.previewTablePageData = this.previewTableData.slice((page-1)*5, page*5)
-    },
-    getTableTotalPage(){
-      return Math.ceil(this.previewTableData.length / 5)
-    },
     closePreview(){
       this.resetUpload();
       this.showExcelPreview = false;
@@ -112,8 +105,8 @@ export default {
       done && done();
     },
     downloadCrewTemplate(){
-      if(this.crewInputTemplate) {
-        downloadExcel('人员导入模板', [loadTemplateString(this.crewInputTemplate)], 'xlsx', 'crewTemplate')
+      if(this.remoteConfig.crewInputTemplate) {
+        downloadExcel('人员导入模板', [loadTemplate(this.remoteConfig.crewInputTemplate)], 'xlsx', 'crewTemplate')
       }
     },
   }

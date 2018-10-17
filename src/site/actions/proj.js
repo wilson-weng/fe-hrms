@@ -1,22 +1,32 @@
 import * as mutationTypes from '../constants/mutationTypes';
 import * as urls from '../constants/urls';
 import * as Utils from '../utils';
+import axios from 'axios'
 
-
-export const getProjs = ({ commit }, params) => {
-  return fetch(`${urls.PROJ_CRUD}?page=${params.page}&company_id=${params.company_id}`, {
-    method: 'GET',
-    credentials: 'include',
-    headers: Utils.getFormHeader(),
-  })
-    .then(response => response.json())
-    .then(result => {
-      if(result.status == 'ok'){
-        commit(mutationTypes.SET_PROJECT_LIST, result.content);
+export const getProjs = ({ commit }, filters) => {
+  let options = '{"module":"proj","query":"list_proj","attrs":["logo_url"]}';
+  return axios.get(`${urls.DATA_QUERY}?filters=${JSON.stringify(filters)}&options=${options}`)
+    .then(response => response.data)
+    .then(res => {
+      if(res.status == 'ok'){
+        commit(mutationTypes.SET_PROJECT_LIST, res.data);
       }
-      return result;
+      return res;
     });
-};
+}
+
+
+export function createProj({ commit }, params){
+  return axios.post(`${urls.PROJ_CRUD}`, params)
+    .then(response => response.data)
+}
+
+
+export function updateProj({ commit }, params){
+  return axios.post(`${urls.PROJ_CRUD}/${params.id}`, params)
+    .then(response => response.data)
+}
+
 
 export const getProjContent = ({ commit }, proj_id) => {
   return fetch(`${urls.PROJ_CONTENT}?proj_id=${proj_id}`, {

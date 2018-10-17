@@ -14,14 +14,14 @@
 </template>
 
 <script>
-import { downloadExcel } from '../../utils/excel';
+  import {downloadExcel, translateDataByFormat} from '../../utils/excel';
 import { mapState, mapActions } from 'vuex';
 
 export default {
+  props: ['filters'],
   data() {
     return {
       exportFile: 'wageDownload2',
-      filters: {startTime: 0, endTime: 0},
       exportFormat: {
         'wageDownload1':'姓名,JD账号,生产日期,工作时长,拣货件数,复核件数,打包一体化单量,打包非一体化单量',
         'wageDownload2':'姓名,JD账号,生产日期,工作时长,拣货件数,复核件数,打包一体化单量,打包非一体化单量,当日收入',
@@ -31,21 +31,22 @@ export default {
         'wageDownload1': '工作数据表',
         'wageDownload2': '员工结算表',
         'wageDownload3': '人员宽表',
+      },
+      remoteConfig: {
+        'exportColumns': ''
       }
     }
   },
-  computed: {
-    ...mapState({
-      currentProj: state => state.global.current_proj,
-    })
-  },
   methods:{
-    ...mapActions(['exportWageRecords']),
+    ...mapActions(['getWageRecords']),
     exportFines(){
       let format = this.exportFormat[this.exportFile];
       let exportId = this.exportFile;
-      this.exportWageRecords({proj_id: this.currentProj.id, filters: JSON.stringify(this.filters)}).then(content=>{
-        let exportContent = JSON.parse(content.result).map(item => {
+      this.filters.page = 1;
+      this.filters.page_size = 5000;
+      this.getWageRecords(this.filters).then(res=>{
+        let datas = translateDataByFormat(res.data.datas, this.remoteConfig.exportColumns);
+        let exportContent = datas.map(item => {
           let partial = {};
           for(let key of format.split(',')){
             partial[key] = item[key]

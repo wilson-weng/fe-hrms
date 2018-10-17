@@ -14,14 +14,10 @@
       </el-col>
     </el-row>
     <el-dialog :visible.sync="showExcelPreview" title="结算数据预览" :before-close="resetUpload" width="80%">
-      <list-view  v-loading="uploadloading"  :table-attrs="previewTableAttr" :table-data="previewTablePageData"  :pages="getTableTotalPage()" :on-page-change="getPreviewTableDataByPage" :page-size="5" v-if="showExcelPreview"></list-view>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="closePreview()">取消</el-button>
-        <el-button type="primary" @click="uploadWageData()">上传</el-button>
-      </div>
+      <dialog-preview-table :columns="previewTableAttr" :preview-data="previewTableData" :on-close="closePreview" :on-upload="uploadWageData"></dialog-preview-table>
     </el-dialog>
     <el-dialog :visible.sync="showErrorDialog" width="80%">
-      <dialog-upload-errors :errors="uploadErrors" :total-count="totalUploadCount"></dialog-upload-errors>
+      <dialog-upload-errors :errors="uploadErrors" :total-count="previewTableData.length"></dialog-upload-errors>
     </el-dialog>
   </el-card>
 </template>
@@ -29,17 +25,16 @@
 <script>
 import iconButtonVertical from '../iconButtonVertical.vue';
 import dialogUploadErrors from '../dialog/dialogUploadErrors.vue';
+import dialogPreviewTable from '../dialog/dialogPreviewTable.vue';
 import listView from '../listView.vue';
-import { downloadExcel, uploadExcel, loadTemplateString, loadFormatString } from '../../utils/excel';
+import { downloadExcel, uploadExcel, loadTemplate, loadFormatKeyToColumns, loadDataByFormat } from '../../utils/excel';
 import { mapState, mapActions } from 'vuex';
 
 export default {
-  components: { iconButtonVertical, listView, dialogUploadErrors },
+  components: { iconButtonVertical, listView, dialogUploadErrors, dialogPreviewTable },
   computed: {
     ...mapState({
       currentProj: state => state.global.current_proj,
-      wageInputFormat: state => state.wage.wage_input_format,
-      wageInputTemplate: state => state.wage.wage_input_template,
     }),
   },
   data () {
@@ -47,40 +42,40 @@ export default {
       showExcelPreview: false,
       previewTableAttr: {},
       previewTableData: [],
-      previewTablePageData: [],
       uploadButton: null,
       uploadButtonId: 'wageUpload',
       downloadButtonId: 'wageTemplate',
-      tablePage: 1,
       uploadloading: false,
       showErrorDialog: false,
       uploadErrors: [],
-      totalUploadCount: 0
+      remoteConfig: {
+        wageInputFormat: '',
+        wageInputTemplate: ''
+      }
     }
   },
   mounted(){
-    (!this.wageInputFormat || !this.wageInputTemplate) && this.getWageIoFormat(this.currentProj.id);
     this.uploadButton = document.getElementById('wageUpload')
   },
   methods: {
-    ...mapActions(['getWageIoFormat', 'createWageRawData']),
+    ...mapActions(['createWageRawData']),
     triggerWageUpload(){
       this.uploadButton.click();
     },
     selectUploadFile(){
       uploadExcel(this.uploadButton).then(lines => {
-        this.previewTableAttr = loadFormatString(this.wageInputFormat);
+        this.previewTableAttr = loadFormatKeyToColumns(this.remoteConfig.wageInputFormat);
         this.previewTableData = lines;
-        console.log(this.previewTableAttr, this.previewTableData, lines)
-        this.getPreviewTableDataByPage(1);
+        console.log(this.previewTableAttr, this.previewTableData)
         this.showExcelPreview = true;
       });
     },
     uploadWageData(){
       this.uploadloading = true;
-      this.createWageRawData({proj_id: this.currentProj.id, lines: JSON.stringify(this.previewTableData)}).then(result =>{
+      let rawData = this.previewTableData;
+      let data = loadDataByFormat(rawData, this.remoteConfig.wageInputFormat);
+      this.createWageRawData({proj_id: this.currentProj.id, lines: JSON.stringify(data)}).then(result =>{
         this.showExcelPreview = false;
-        console.log(result);
         this.resetUpload();
         if(result.status == 'ok'){
           if(result.data.errors.length == 0){
@@ -89,8 +84,10 @@ export default {
               type: 'success'
             });
           }else{
-            this.uploadErrors = result.data.errors;
-            this.totalUploadCount = result.data.lines.length;
+            this.uploadErrors = result.data.errors.map(item=>{
+              item.content = rawData[item.line_index-1];
+              return item;
+            });
             this.showErrorDialog = true;
           }
         }else{
@@ -102,12 +99,6 @@ export default {
         this.uploadloading = false;
       })
     },
-    getPreviewTableDataByPage(page){
-      this.previewTablePageData = this.previewTableData.slice((page-1)*5, page*5)
-    },
-    getTableTotalPage(){
-      return Math.ceil(this.previewTableData.length / 5)
-    },
     closePreview(){
       this.resetUpload();
       this.showExcelPreview = false;
@@ -117,8 +108,8 @@ export default {
       done && done();
     },
     downloadWageTemplate(){
-      if(this.wageInputTemplate) {
-        downloadExcel('结算数据导入模板', [loadTemplateString(this.wageInputTemplate)], 'xlsx', 'wageTemplate')
+      if(this.remoteConfig.wageInputTemplate) {
+        downloadExcel('结算数据导入模板', [loadTemplate(this.remoteConfig.wageInputTemplate)], 'xlsx', 'wageTemplate')
       }
     },
   }

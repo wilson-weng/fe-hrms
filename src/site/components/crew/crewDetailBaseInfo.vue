@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-row>
-      <el-col :span="12"  v-for='item in Object.keys(currentCrew)' :key="item">
+      <el-col :span="12"  v-for='item in getDetailList()' :key="item">
         <info-list-item :title="item" :value="currentCrew[item]" :key="item"></info-list-item>
       </el-col>
     </el-row>
@@ -40,7 +40,7 @@
 <script>
 import { mapState, mapActions } from 'vuex';
 import infoListItem from '../infoListItem';
-import { loadFormatStringKeys } from '../../utils/excel';
+import { loadFormatKeys, translateDataByFormat } from '../../utils/excel';
 
 export default {
   components: {infoListItem},
@@ -48,7 +48,6 @@ export default {
     ...mapState({
       currentCrew: state => state.crew.current_crew,
       currentProj: state => state.global.current_proj,
-      crewInputFormat: state => state.crew.crew_input_format,
     }),
   },
   data() {
@@ -56,16 +55,16 @@ export default {
       showConfirmDeleteDialog: false,
       showUpdateDialog: false,
       updateInputList: [],
-      updatedCrew: {}
+      updatedCrew: {},
+      remoteConfig: {
+        crewInfoFormat: '',
+      }
     }
   },
-  mounted(){
-    !this.crewInputFormat && this.getCrewIoFormat(this.currentProj.id);
-  },
   methods: {
-    ...mapActions(['deleteCrewRecords','updateCrewRecords']),
+    ...mapActions(['deleteCrewRecords','updateCrewRecords', 'getCrewById', 'setCurrentCrew']),
     showUpdateDialogHandle(){
-      this.updateInputList = loadFormatStringKeys(this.crewInputFormat);
+      this.updateInputList = loadFormatKeys(this.remoteConfig.crewInfoFormat);
       this.updateInputList.map(item => {
         this.updatedCrew[item] = this.currentCrew[item];
       });
@@ -75,6 +74,9 @@ export default {
       this.updateCrewRecords({proj_id: this.currentProj.id, crew_id: this.currentCrew.id, content: JSON.stringify(this.updatedCrew)}).then(()=>{
         this.showUpdateDialog = false;
         this.$message({message: '修改成功', type: 'success'})
+        this.getCrewById({crew_id: this.currentCrew.id}).then(res=>{
+          this.setCurrentCrew(res.data);
+        })
       })
     },
     confirmDelete(){
@@ -86,6 +88,9 @@ export default {
         }, 2000)
       })
     },
+    getDetailList(){
+      return translateDataByFormat([this.currentCrew], this.remoteConfig.crewInfoFormat)[0]
+    }
   }
 }
 </script>

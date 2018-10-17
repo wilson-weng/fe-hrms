@@ -5,10 +5,7 @@ const initState = {
 
   crew_list: [],
   current_crew: {},
-  crew_input_format: false,
-  crew_input_template: false,
-  crew_table_display: '',
-  crew_query_count: 0,
+  crew_total_count: 0,
 };
 
 const getters = {
@@ -17,13 +14,8 @@ const getters = {
 
 const mutations = {
   [mutationTypes.SET_CREW_LIST](state, obj) {
-    state.crew_list = JSON.parse(obj.result);
-    state.crew_table_display = obj.display_format;
-    state.crew_query_count = obj.count;
-  },
-  [mutationTypes.SET_CREW_INPUT](state, obj) {
-    state.crew_input_format = obj.input_format;
-    state.crew_input_template = obj.input_template;
+    state.crew_list = obj.datas;
+    state.crew_total_count = obj.total_count;
   },
   [mutationTypes.DELETE_CREW](state, index) {
     state.crew_list.splice(index, 1);

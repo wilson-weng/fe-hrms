@@ -1,7 +1,7 @@
 <template>
   <div>
-    <crew-work-table></crew-work-table>
-    <wage-work-table></wage-work-table>
+    <crew-work-table v-gear="'人员导入'"></crew-work-table>
+    <wage-work-table v-gear="'结算导入'"></wage-work-table>
     <fine-work-table v-gear="'赔付导入'"></fine-work-table>
     <el-card class="m-a-1" :body-style="{padding: 0}">
       <el-row type="flex" class="p-a-1">

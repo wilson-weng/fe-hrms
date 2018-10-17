@@ -19,6 +19,7 @@ axios.interceptors.request.use(function (config) {
   if(store.state.global.current_proj.id){
     config.headers.proj_id = store.state.global.current_proj.id
   }
+  config.headers.org_id = store.state.global.org_id
   if(config.data){
     config.data = Utils.getPostParams(config.data);
   }

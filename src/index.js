@@ -26,7 +26,6 @@ let vue = new Vue({ ...App, router, store }).$mount('#app');
 
 Vue.directive('gear', {
   bind: function(el, binding, vnode) {
-    console.log(vnode.componentInstance)
     let conf = store.state.global.page_config[binding.value];
     if (conf) {
       let props = JSON.parse(conf.props)

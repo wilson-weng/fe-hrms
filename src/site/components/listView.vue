@@ -6,8 +6,8 @@
       :columns="tableColumns"
       title-align="center"
       column-align="center"
-      :row-height="60"
-      :title-row-height="60"
+      :row-height="50"
+      :title-row-height="50"
       :show-vertical-border="false"
       :show-horizontal-border="false"
       :table-data="tableData"
@@ -58,7 +58,8 @@
 
 <style scoped>
   .v-table-class {
-    border: none
+    border: none;
+    color: #666;
   }
 
 </style>

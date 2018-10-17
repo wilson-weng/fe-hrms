@@ -98,7 +98,7 @@ const getCharCol = (n) => {
   return s;
 };
 
-export const loadTemplateString = (text) => {
+export const loadTemplate = (text) => {
   let result = {};
   if(!text) return result;
   if(text.indexOf(':') > 0){
@@ -113,7 +113,23 @@ export const loadTemplateString = (text) => {
 };
 
 
-export const loadFormatString = (text) => {
+export const loadFormatToColumns = (text) => {
+  let result = [];
+  if (!text) return result;
+  if (text.indexOf('|') > 0) {
+    text.split(',').map(item => {
+      if (item.indexOf('|') > 0) {
+        let pair = item.split('|');
+        result.push({title: pair[0], field: pair[1]});
+      } else {
+        result.push({title: item, field: item});
+      }
+    })
+  }
+  return result;
+}
+
+export const loadFormatKeyToColumns = (text) => {
   let result = [];
   if(!text) return result;
   if(text.indexOf('|') > 0){
@@ -145,7 +161,7 @@ export const getTranslateObj = (text) => {
   return result;
 };
 
-export const loadFormatStringKeys = (text) => {
+export const loadFormatKeys = (text) => {
   let result = [];
   if(!text) return result;
   if(text.indexOf('|') > 0){

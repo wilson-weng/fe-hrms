@@ -2,16 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b35e7d3f-1200-4068-b8c8-3bde52471a01" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/site/components/proj/projRecordList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/site/actions/fine.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/site/actions/fine.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/site/components/dialog/dialogUploadErrors.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/site/components/dialog/dialogUploadErrors.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/site/components/fine/fineRecordList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/site/components/fine/fineRecordList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/site/components/fine/fineWorkTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/site/components/fine/fineWorkTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/site/components/listView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/site/components/listView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/site/components/tools/exportButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/site/components/tools/exportButton.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/site/styles/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/site/styles/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/site/utils/excel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/site/utils/excel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/site/views/workTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/site/views/workTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/site/actions/crew.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/site/actions/crew.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/site/actions/proj.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/site/actions/proj.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/site/components/crew/crewDetailBaseInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/site/components/crew/crewDetailBaseInfo.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/site/components/imgUploader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/site/components/imgUploader.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/site/components/proj/projBaseEditor.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/site/components/proj/projBaseEditor.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/site/mutations/global.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/site/mutations/global.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/site/mutations/proj.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/site/mutations/proj.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/site/views/crewDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/site/views/crewDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/site/views/projList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/site/views/projList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -91,52 +94,54 @@
     <session id="1496041463">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="12" />
+          <entry key="project.closed" value="14" />
           <entry key="project.open.time.11" value="2" />
-          <entry key="project.open.time.2" value="6" />
+          <entry key="project.open.time.2" value="8" />
           <entry key="project.open.time.3" value="1" />
-          <entry key="project.open.time.5" value="1" />
+          <entry key="project.open.time.5" value="2" />
           <entry key="project.open.time.6" value="2" />
-          <entry key="project.open.time.7" value="1" />
+          <entry key="project.open.time.7" value="2" />
           <entry key="project.open.time.9" value="2" />
-          <entry key="project.opened" value="15" />
+          <entry key="project.opened" value="19" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="gitignore" value="1" />
           <entry key="html" value="1" />
-          <entry key="js" value="79" />
+          <entry key="js" value="102" />
           <entry key="json" value="3" />
-          <entry key="scss" value="5" />
+          <entry key="scss" value="7" />
           <entry key="ts" value="1" />
-          <entry key="vue" value="92" />
+          <entry key="vue" value="130" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="HTML" value="1" />
           <entry key="JSON" value="3" />
-          <entry key="JavaScript" value="79" />
-          <entry key="SCSS" value="5" />
+          <entry key="JavaScript" value="102" />
+          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="SCSS" value="7" />
           <entry key="TypeScript" value="1" />
-          <entry key="Vue.js" value="92" />
+          <entry key="Vue.js" value="130" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="js" value="4215" />
+          <entry key="js" value="4672" />
           <entry key="json" value="22" />
-          <entry key="scss" value="97" />
-          <entry key="vue" value="16737" />
+          <entry key="scss" value="99" />
+          <entry key="vue" value="19802" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="5" />
           <entry key="JSON" value="22" />
-          <entry key="JavaScript" value="4215" />
-          <entry key="SCSS" value="97" />
-          <entry key="Vue.js" value="16732" />
+          <entry key="JavaScript" value="4672" />
+          <entry key="SCSS" value="99" />
+          <entry key="Vue.js" value="19797" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
@@ -152,111 +157,83 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/site/components/fine/fineRecordList.vue">
+        <entry file="file://$PROJECT_DIR$/src/site/views/projList.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="134" column="36" selection-start-line="134" selection-start-column="15" selection-end-line="134" selection-end-column="36" />
-              <folding>
-                <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#export-button#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#1555#1599#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="38">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/router.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="450">
+              <caret line="80" lean-forward="true" selection-start-line="80" selection-end-line="80" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/site/mutations/global.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/site/views/fineList.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="38">
+              <caret line="2" column="23" selection-start-line="2" selection-end-line="3" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/site/components/tools/exportButton.vue">
+        <entry file="file://$PROJECT_DIR$/src/site/components/proj/projRecordList.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="28" column="24" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
+            <state relative-caret-position="89">
+              <caret line="41" column="24" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="24" />
               <folding>
-                <element signature="e#198#248#0" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-input#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/site/components/fine/fineWorkTable.vue">
+        <entry file="file://$PROJECT_DIR$/src/store.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="79" column="33" selection-start-line="79" selection-start-column="33" selection-end-line="79" selection-end-column="33" />
+            <state relative-caret-position="342">
+              <caret line="21" column="36" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
               <folding>
-                <element signature="e#1536#1595#0" expanded="true" />
+                <element signature="e#224#250#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/site/components/dialog/dialogUploadErrors.vue">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
+            <state>
+              <caret selection-end-line="6" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/site/actions/fine.js">
+        <entry file="file://$PROJECT_DIR$/src/site/actions/crew.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+            <state relative-caret-position="19">
+              <caret line="5" column="27" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="27" />
               <folding>
                 <element signature="e#0#60#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/site/components/listView.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="52" column="23" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
-              <folding>
-                <element signature="n#style#0;n#v-table#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/site/styles/index.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2128">
-              <caret line="112" selection-start-line="112" selection-end-line="112" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/site/utils/excel.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="166" column="12" selection-start-line="166" selection-start-column="12" selection-end-line="166" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/site/views/crewList.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="12" column="134" selection-start-line="12" selection-start-column="66" selection-end-line="12" selection-end-column="134" />
-              <folding>
-                <element signature="e#1182#1226#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/site/mutations/fine.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -278,15 +255,19 @@
       <find>margin-bottom: 22px</find>
       <find>createWageRawData</find>
       <find>handle</find>
-      <find>fine</find>
       <find>rich</find>
       <find>v-gear</find>
+      <find>exportWages</find>
+      <find>fine</find>
+      <find>filters</find>
+      <find>crew</find>
     </findStrings>
     <replaceStrings>
       <replace>'</replace>
-      <replace>wage</replace>
-      <replace>crew</replace>
       <replace>apply</replace>
+      <replace>crew</replace>
+      <replace>wage</replace>
+      <replace>proj</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -298,34 +279,13 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/site/views/crewDetail.vue" />
-        <option value="$PROJECT_DIR$/src/site/actions/crew.js" />
-        <option value="$PROJECT_DIR$/src/site/mutations/crew.js" />
-        <option value="$PROJECT_DIR$/src/site/mutations/proj.js" />
-        <option value="$PROJECT_DIR$/src/site/styles/common.scss" />
-        <option value="$PROJECT_DIR$/src/site/components/crew/crewDetailFineTable.vue" />
-        <option value="$PROJECT_DIR$/src/site/components/wage/wageWorkTable.vue" />
-        <option value="$PROJECT_DIR$/src/site/components/crew/crewWorkTable.vue" />
-        <option value="$PROJECT_DIR$/src/site/components/currentProjBar.vue" />
-        <option value="$PROJECT_DIR$/src/site/components/crew/crewDetailBaseInfo.vue" />
-        <option value="$PROJECT_DIR$/src/site/components/upload.vue" />
-        <option value="$PROJECT_DIR$/src/site/components/imgSquare.vue" />
-        <option value="$PROJECT_DIR$/src/site/components/imgUploader.vue" />
-        <option value="$PROJECT_DIR$/src/site/components/richTextEditor.vue" />
-        <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/src/site/actions/proj.js" />
-        <option value="$PROJECT_DIR$/src/site/components/recruit/projHighlightEditor.vue" />
-        <option value="$PROJECT_DIR$/src/site/components/recruit/projInfoEditor.vue" />
         <option value="$PROJECT_DIR$/src/site/components/recruit/projContentEditor.vue" />
         <option value="$PROJECT_DIR$/src/site/views/recruitPageEditor.vue" />
         <option value="$PROJECT_DIR$/src/site/mutations/apply.js" />
-        <option value="$PROJECT_DIR$/src/site/views/crewList.vue" />
         <option value="$PROJECT_DIR$/src/site/actions/apply.js" />
         <option value="$PROJECT_DIR$/src/site/views/wxApplyList.vue" />
         <option value="$PROJECT_DIR$/src/site/constants/mutationTypes.js" />
-        <option value="$PROJECT_DIR$/src/site/mutations/global.js" />
         <option value="$PROJECT_DIR$/src/site/components/gear.vue" />
-        <option value="$PROJECT_DIR$/src/site/views/projList.vue" />
         <option value="$PROJECT_DIR$/src/site/utils/index.js" />
         <option value="$PROJECT_DIR$/src/site/views/main.vue" />
         <option value="$PROJECT_DIR$/src/site/components/tools/deleteAndConfirmButton.vue" />
@@ -333,22 +293,43 @@
         <option value="$PROJECT_DIR$/src/site/components/tools/confirmButton.vue" />
         <option value="$PROJECT_DIR$/src/site/components/tools/detailDialogButton.vue" />
         <option value="$PROJECT_DIR$/src/site/components/infoListItem.vue" />
-        <option value="$PROJECT_DIR$/src/store.js" />
         <option value="$PROJECT_DIR$/src/site/actions/global.js" />
-        <option value="$PROJECT_DIR$/src/router.js" />
         <option value="$PROJECT_DIR$/src/site/views/fineList.vue" />
-        <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/src/site/constants/urls.js" />
-        <option value="$PROJECT_DIR$/src/site/mutations/fine.js" />
-        <option value="$PROJECT_DIR$/src/site/views/workTable.vue" />
         <option value="$PROJECT_DIR$/src/site/components/dialog/dialogUploadErrors.vue" />
+        <option value="$PROJECT_DIR$/src/site/actions/fine.js" />
+        <option value="$PROJECT_DIR$/src/site/components/tools/exportButton.vue" />
+        <option value="$PROJECT_DIR$/src/site/mutations/fine.js" />
+        <option value="$PROJECT_DIR$/src/site/views/crewList.vue" />
+        <option value="$PROJECT_DIR$/src/index.js" />
+        <option value="$PROJECT_DIR$/src/site/mutations/crew.js" />
         <option value="$PROJECT_DIR$/src/site/styles/index.scss" />
         <option value="$PROJECT_DIR$/src/site/components/listView.vue" />
-        <option value="$PROJECT_DIR$/src/site/components/fine/fineWorkTable.vue" />
-        <option value="$PROJECT_DIR$/src/site/actions/fine.js" />
+        <option value="$PROJECT_DIR$/src/site/components/dialog/dialogPreviewTable.vue" />
         <option value="$PROJECT_DIR$/src/site/components/fine/fineRecordList.vue" />
+        <option value="$PROJECT_DIR$/src/site/components/crew/crewRecordList.vue" />
+        <option value="$PROJECT_DIR$/src/site/views/wageList.vue" />
+        <option value="$PROJECT_DIR$/src/site/mutations/wage.js" />
+        <option value="$PROJECT_DIR$/src/site/actions/wage.js" />
+        <option value="$PROJECT_DIR$/src/site/components/wage/wageExportPanel.vue" />
+        <option value="$PROJECT_DIR$/src/site/components/wage/wageRecordList.vue" />
+        <option value="$PROJECT_DIR$/src/site/views/workTable.vue" />
+        <option value="$PROJECT_DIR$/src/site/components/fine/fineWorkTable.vue" />
+        <option value="$PROJECT_DIR$/src/site/components/crew/crewWorkTable.vue" />
         <option value="$PROJECT_DIR$/src/site/utils/excel.js" />
-        <option value="$PROJECT_DIR$/src/site/components/tools/exportButton.vue" />
+        <option value="$PROJECT_DIR$/src/site/components/wage/wageWorkTable.vue" />
+        <option value="$PROJECT_DIR$/src/site/views/crewDetail.vue" />
+        <option value="$PROJECT_DIR$/src/site/actions/crew.js" />
+        <option value="$PROJECT_DIR$/src/site/components/crew/crewDetailBaseInfo.vue" />
+        <option value="$PROJECT_DIR$/src/site/mutations/proj.js" />
+        <option value="$PROJECT_DIR$/src/site/actions/proj.js" />
+        <option value="$PROJECT_DIR$/src/site/components/imgUploader.vue" />
+        <option value="$PROJECT_DIR$/src/site/components/proj/projBaseEditor.vue" />
+        <option value="$PROJECT_DIR$/src/site/views/projList.vue" />
+        <option value="$PROJECT_DIR$/src/router.js" />
+        <option value="$PROJECT_DIR$/src/site/mutations/global.js" />
+        <option value="$PROJECT_DIR$/src/store.js" />
+        <option value="$PROJECT_DIR$/src/site/components/proj/projRecordList.vue" />
       </list>
     </option>
   </component>
@@ -382,22 +363,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="fe-hrms" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fe-hrms" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fe-hrms" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fe-hrms" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -441,6 +406,14 @@
               <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="site" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="components" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="crew" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="fe-hrms" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="site" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="components" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="dialog" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
@@ -457,7 +430,15 @@
               <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="site" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="components" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="tools" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="proj" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="fe-hrms" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="site" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="components" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="recruit" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
               <item name="fe-hrms" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
@@ -505,10 +486,27 @@
           <select />
         </subPane>
       </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="fe-hrms" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fe-hrms" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fe-hrms" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fe-hrms" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="SearchEverywhereHistoryKey" value="listview&#9;FILE&#9;file:///home/wilson/code/fe-hrms/src/site/components/listView.vue" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.buildTools.grunt.grunt-cli.package" value="" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="" />
@@ -525,11 +523,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/site/components/tools" />
-      <recent name="$PROJECT_DIR$/src/site/components/recruit" />
-      <recent name="$PROJECT_DIR$/src/site/components/crew" />
+      <recent name="$PROJECT_DIR$/src/site/components/proj" />
       <recent name="$PROJECT_DIR$/src/site/components/wage" />
-      <recent name="$PROJECT_DIR$/src/site/components/crewDetail" />
+      <recent name="$PROJECT_DIR$/src/site/components/dialog" />
+      <recent name="$PROJECT_DIR$/src/site/components/crew" />
+      <recent name="$PROJECT_DIR$/src/site/components/tools" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/site/components/dialog" />
@@ -598,11 +596,15 @@
       <workItem from="1539136549158" duration="26730000" />
       <workItem from="1539250220494" duration="4590000" />
       <workItem from="1539676582354" duration="9479000" />
+      <workItem from="1539746638967" duration="17758000" />
+      <workItem from="1540002158978" duration="10408000" />
+      <workItem from="1540173773574" duration="171000" />
+      <workItem from="1540190114144" duration="521000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="274764000" />
+    <option name="totallyTimeSpent" value="303622000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
@@ -640,155 +642,22 @@
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/site/views/crewDetail.vue</url>
+          <line>9</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/site/components/wage/wageWorkTable.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="16" column="185" selection-start-line="16" selection-start-column="185" selection-end-line="16" selection-end-column="200" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/site/views/wageList.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="41" column="44" selection-start-line="41" selection-end-line="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/site/components/crew/crewDetailBaseInfo.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="31" column="48" lean-forward="true" selection-start-line="31" selection-start-column="48" selection-end-line="33" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/site/actions/wage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="25" column="35" lean-forward="true" selection-start-line="25" selection-start-column="35" selection-end-line="26" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/site/components/upload.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="90" column="12" selection-start-line="90" selection-start-column="12" selection-end-line="92" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/site/components/imgSquare.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="60" selection-start-line="9" selection-start-column="60" selection-end-line="9" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/site/components/richTextEditor.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="26" column="24" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/site/components/imgUploader.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1653">
-          <caret line="89" column="36" selection-start-line="89" selection-start-column="36" selection-end-line="89" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/index.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/site/views/recruitPageEditor.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="931">
-          <caret line="52" column="7" selection-start-line="52" selection-start-column="7" selection-end-line="52" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/site/components/recruit/projHighlightEditor.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1577">
-          <caret line="84" column="42" selection-start-line="84" selection-start-column="42" selection-end-line="84" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/site/components/recruit/projInfoEditor.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2185">
-          <caret line="117" column="40" selection-start-line="117" selection-start-column="40" selection-end-line="117" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/site/views/crewDetail.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="24" column="23" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/site/mutations/apply.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="26" column="15" selection-start-line="26" selection-start-column="15" selection-end-line="26" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/site/actions/apply.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
-          <caret line="38" column="37" selection-start-line="38" selection-start-column="37" selection-end-line="38" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/site/components/recruit/projContentEditor.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="26" column="35" selection-start-line="25" selection-start-column="5" selection-end-line="26" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/site/constants/mutationTypes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="20" column="43" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/site/components/currentProjBar.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-121">
-          <caret line="10" column="91" selection-start-line="10" selection-start-column="91" selection-end-line="10" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/site/components/gear.vue" />
     <entry file="file://$PROJECT_DIR$/node_modules/vue/types/vue.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
           <caret line="42" column="2" selection-start-line="42" selection-start-column="2" selection-end-line="42" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/site/actions/crew.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="30" column="28" selection-start-line="30" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/site/views/projList.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="17" column="47" selection-start-line="17" selection-start-column="47" selection-end-line="17" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/site/components/crew/crewDetailFineTable.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="20" column="132" selection-start-line="20" selection-start-column="132" selection-end-line="20" selection-end-column="132" />
         </state>
       </provider>
     </entry>
@@ -844,23 +713,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/site/mutations/global.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="23" column="44" lean-forward="true" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1254">
-          <caret line="78" column="28" selection-start-line="78" selection-start-column="28" selection-end-line="78" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/site/views/wxApplyList.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1368">
@@ -868,141 +720,312 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.js">
+    <entry file="file://$PROJECT_DIR$/src/site/components/crew/crewDetailFineTable.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="36" column="64" selection-start-line="36" selection-start-column="64" selection-end-line="36" selection-end-column="64" />
+        <state relative-caret-position="-209">
+          <caret line="40" column="26" selection-start-line="40" selection-end-line="41" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/site/views/fineList.vue">
+    <entry file="file://$PROJECT_DIR$/src/site/mutations/crew.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="37" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/site/actions/global.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="22" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/store.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="31" lean-forward="true" selection-start-line="13" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/site/actions/proj.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="27" column="2" selection-start-line="19" selection-end-line="27" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/site/constants/urls.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="43" selection-start-line="2" selection-start-column="43" selection-end-line="2" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/site/views/workTable.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
+        <state relative-caret-position="323">
+          <caret line="17" column="14" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/site/styles/index.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2128">
-          <caret line="112" selection-start-line="112" selection-end-line="112" />
+        <state relative-caret-position="439">
+          <caret line="113" selection-start-line="113" selection-end-line="113" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/site/views/crewList.vue">
+    <entry file="file://$PROJECT_DIR$/src/site/styles/common.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="134" selection-start-line="12" selection-start-column="66" selection-end-line="12" selection-end-column="134" />
-          <folding>
-            <element signature="e#1182#1226#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="553">
+          <caret line="149" column="17" selection-start-line="149" selection-start-column="11" selection-end-line="149" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/site/components/listView.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="52" column="23" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
+        <state relative-caret-position="171">
+          <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
           <folding>
             <element signature="n#style#0;n#v-table#0;n#div#0;n#template#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/site/mutations/fine.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/site/components/dialog/dialogUploadErrors.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
+        <state relative-caret-position="494">
           <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/site/actions/fine.js">
+    <entry file="file://$PROJECT_DIR$/src/site/views/crewList.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="35" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/site/mutations/fine.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="13" column="45" lean-forward="true" selection-start-line="13" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/site/mutations/wage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/site/views/wageList.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="18" column="35" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/site/actions/wage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="34" column="124" selection-start-line="34" selection-start-column="124" selection-end-line="34" selection-end-column="124" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/site/components/tools/exportButton.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="456">
-          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+          <caret line="24" column="19" lean-forward="true" selection-start-line="24" selection-start-column="19" selection-end-line="26" selection-end-column="36" />
           <folding>
-            <element signature="e#0#60#0" expanded="true" />
+            <element signature="e#198#248#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/site/components/wage/wageExportPanel.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="892">
+          <caret line="47" column="16" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/site/components/wage/wageRecordList.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="19" column="36" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/site/views/workTable.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="34" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/site/utils/excel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-367">
+          <caret line="138" column="50" selection-start-line="138" selection-start-column="50" selection-end-line="138" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/site/components/fine/fineWorkTable.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-722">
+          <caret line="28" column="49" selection-start-line="28" selection-start-column="49" selection-end-line="28" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/site/components/wage/wageWorkTable.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="75" column="50" lean-forward="true" selection-start-line="75" selection-start-column="50" selection-end-line="75" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/site/views/crewDetail.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="19" column="67" selection-start-line="19" selection-start-column="67" selection-end-line="19" selection-end-column="67" />
+          <folding>
+            <element signature="e#435#467#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/site/components/crew/crewDetailBaseInfo.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="60" column="7" lean-forward="true" selection-start-line="60" selection-start-column="7" selection-end-line="60" selection-end-column="7" />
+          <folding>
+            <element signature="e#1458#1502#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/site/components/fine/fineRecordList.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="134" column="36" selection-start-line="134" selection-start-column="15" selection-end-line="134" selection-end-column="36" />
+        <state relative-caret-position="532">
+          <caret line="28" column="16" selection-start-line="28" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/site/mutations/proj.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/site/actions/fine.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/site/constants/urls.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/site/actions/proj.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/site/components/dialog/dialogPreviewTable.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-77">
+          <caret line="14" column="22" selection-start-line="14" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/site/actions/global.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/site/components/imgUploader.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="469">
+          <caret line="69" column="53" selection-start-line="69" selection-start-column="53" selection-end-line="69" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/site/components/proj/projBaseEditor.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="469">
+          <caret line="71" column="52" selection-start-line="71" selection-start-column="52" selection-end-line="71" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/site/components/crew/crewWorkTable.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="29" column="67" selection-start-line="29" selection-start-column="67" selection-end-line="29" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/site/components/crew/crewRecordList.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="85" column="30" lean-forward="true" selection-start-line="85" selection-end-line="86" />
           <folding>
             <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#export-button#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#1555#1599#0" expanded="true" />
+            <element signature="n#style#0;n#el-input#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#1142#1186#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/site/components/fine/fineWorkTable.vue">
+    <entry file="file://$PROJECT_DIR$/src/site/views/login.vue">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/site/views/fineList.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="79" column="33" selection-start-line="79" selection-start-column="33" selection-end-line="79" selection-end-column="33" />
+        <state relative-caret-position="38">
+          <caret line="2" column="23" selection-start-line="2" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/site/actions/crew.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="5" column="27" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="27" />
           <folding>
-            <element signature="e#1536#1595#0" expanded="true" />
+            <element signature="e#0#60#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/site/utils/excel.js">
+    <entry file="file://$PROJECT_DIR$/src/router.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="166" column="12" selection-start-line="166" selection-start-column="12" selection-end-line="166" selection-end-column="12" />
+        <state relative-caret-position="450">
+          <caret line="80" lean-forward="true" selection-start-line="80" selection-end-line="80" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/site/components/tools/exportButton.vue">
+    <entry file="file://$PROJECT_DIR$/src/site/mutations/global.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="28" column="24" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
+        <state relative-caret-position="200">
+          <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/site/views/projList.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-196">
+          <caret line="28" column="31" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="21" column="36" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
           <folding>
-            <element signature="e#198#248#0" expanded="true" />
+            <element signature="e#224#250#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/site/components/proj/projRecordList.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="41" column="24" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="24" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-input#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -74,9 +74,9 @@ const router = new VueRouter({
   routes: routes,
 })
 
-router.beforeEach((to, from, next) => {
-  let store = router.app.$options.store;
-  store.dispatch('getPageConfigure', {page_url: to.path}).then(()=>next());
-});
+// router.beforeEach((to, from, next) => {
+  // let store = router.app.$options.store;
+  // store.dispatch('getPageConfigure', {page_url: to.path}).then(()=>next());
+// });
 
 export default router
