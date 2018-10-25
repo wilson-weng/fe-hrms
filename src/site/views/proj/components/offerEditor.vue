@@ -3,20 +3,24 @@
     <el-col>
       <el-form label-position="right" label-width="100px" :model="offerModel" v-loading="loading" style="margin-top: 1em;">
         <el-form-item label="岗位: ">
-          <el-input v-model="offerModel.position" style="max-width: 220px"></el-input>
+          <el-autocomplete
+            class="inline-input"
+            :disabled="isUpdate"
+            v-model="offerModel.position" style="max-width: 220px"
+            :fetch-suggestions="querySearch"
+            placeholder="请输入岗位名称"
+          ></el-autocomplete>
         </el-form-item>
         <el-form-item label="类型: ">
-          <el-radio v-model="offerModel.offer_type" :label="0">员工到手</el-radio>
-          <el-radio v-model="offerModel.offer_type" :label="1">供应商应收</el-radio>
+          <el-radio v-model="offerModel.offer_type" :label="0" :disabled="isUpdate">员工到手</el-radio>
+          <el-radio v-model="offerModel.offer_type" :label="1" :disabled="isUpdate">供应商应收</el-radio>
         </el-form-item>
-        <el-form-item label="收入范围: ">
-          <el-input v-model="wageStart" style="max-width: 100px"></el-input>
-          <span style="margin: 0 5px">-</span>
-          <el-input v-model="wageEnd" style="max-width: 100px"></el-input>
+        <el-form-item label="标准工作量: ">
+          <el-input v-model="offerModel.standard_value" style="max-width: 220px"></el-input>
         </el-form-item>
         <el-form-item label="生效日期: ">
           <el-date-picker
-            v-model="startDate"
+            v-model="startDate" :disabled="isUpdate"
             type="date">
           </el-date-picker>
         </el-form-item>
@@ -64,6 +68,7 @@
     props: ['onUpdate', 'offerData', 'onBack'],
     computed: {
       ...mapState({
+        currentProj: state => state.global.current_proj,
         offerPluginList: state => state.proj.offer_plugin_list,
         offerPluginMap: state => state.proj.offer_plugin_map,
       }),
@@ -73,10 +78,9 @@
         offerModel: {},
         loading: false,
         startDate: '',
-        wageStart: '',
-        wageEnd: '',
         activePlugin: '',
-        plugins: []
+        plugins: [],
+        isUpdate: false,
       }
     },
 
@@ -87,8 +91,7 @@
         this.loading = true;
 
         this.startDate && (this.offerModel.start_time = new Date(this.startDate).getTime()/1000);
-        this.offerModel.wage_range = this.wageStart + ' - ' + this.wageEnd;
-        let apiFunc = this.offerData.id? this.updateOffer : this.createOffer;
+        let apiFunc = this.isUpdate? this.updateOffer : this.createOffer;
         apiFunc(this.offerModel).then(res=>{
           for(let plugin of this.plugins){
             let props = {};
@@ -96,8 +99,8 @@
               props[item.name] = item.value;
             }
             let params = {
-              module_type: 'offer',
-              module_id: res.data.id,
+              bus_type: 'offer',
+              bus_id: res.data.id,
               plugin_id: plugin.id,
               plugin_name: plugin.name,
               props: JSON.stringify(props),
@@ -109,14 +112,14 @@
         })
       },
       addPlugin(plugin){
-        this.plugins.push(JSON.parse(JSON.stringify(plugin)));
+        this.plugins.push(Object.assign({}, plugin));
       },
       initPlugins(){
-        if(!this.offerModel.plugins){
+        if(!this.isUpdate){
           return;
         }
         for(let item of this.offerModel.plugins){
-          let plugin = this.offerPluginMap[item.plugin_id];
+          let plugin = Object.assign({}, this.offerPluginMap[item.plugin_id]);
           for(let prop of plugin.props){
             let itemProps = JSON.parse(item.props);
             prop.value = itemProps[prop.name]
@@ -127,25 +130,25 @@
       isPluginAdded(item){
         let index = this.plugins.findIndex(p => p.name == item.name)
         return index >= 0
-      }
+      },
+      querySearch(queryString, cb) {
+        var options = this.currentProj.position_options.map(item=>{
+          return {value: item}
+        });
+        options.splice(0,0,{value: '所有'});
+        cb(options);
+      },
     },
 
     mounted() {
+      this.isUpdate = !!this.offerData.id;
       this.offerModel = JSON.parse(JSON.stringify(this.offerData));
-      this.offerModel.start_time_str && (this.startDate = this.offerModel.start_time_str);
-      if(this.offerModel.wage_range){
-        let range = this.offerModel.wage_range.split('-');
-        if(range.length = 2){
-          this.wageStart = range[0];
-          this.wageEnd = range[1];
-        }
-      }
+      this.isUpdate && (this.startDate = this.offerModel.start_time_str);
       if(this.offerPluginList.length == 0){
         this.getOfferPlugins().then(()=>this.initPlugins())
       }else{
         this.initPlugins();
       }
-
     }
   }
 </script>

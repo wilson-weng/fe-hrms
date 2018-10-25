@@ -28,7 +28,7 @@
     computed: {
       ...mapState({
         projList: state => state.proj.proj_list.map(item => {
-          return { id: item.id, name: item.proj_name, filters: {'大区': item.region, '城市': item.city, '分类': item.category}};
+          return { id: item.id, name: item.proj_name, tag: item.crew_num+'人', sort: item.crew_num, filters: {'大区': item.region, '城市': item.city, '分类': item.category}};
         }),
         projRawList: state => state.proj.proj_list,
         currentProj: state => state.global.current_proj,

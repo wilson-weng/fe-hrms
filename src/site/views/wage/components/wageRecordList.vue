@@ -8,7 +8,7 @@
           type="daterange"
           align="right"
           unlink-panels
-          range-separator="至"
+          range-separator="-"
           start-placeholder="开始日期"
           end-placeholder="结束日期"
           :picker-options="datePickerOptions" size="small">
@@ -17,13 +17,13 @@
         <el-button style="float: right;" size="small" @click="showExportPanel = !showExportPanel">{{showExportPanel?'收起':'导出明细'}}</el-button>
       </div>
     </div>
-    <wage-export-panel v-gear="'结算导出'" :filters="filters" v-show="showExportPanel"></wage-export-panel>
+    <wage-export-panel :filters="filters" v-show="showExportPanel"></wage-export-panel>
     <list-view :table-data="wageList" :columns="columns" :pages="Math.ceil(wageTotalCount/10)" :on-page-change="onPageChange" :on-custom-comp="onTableButtonClick"></list-view>
     <el-dialog
       :visible.sync="showDetailDialog"
       title="结算详情"
       width="50%">
-      <info-list-item v-for='value, key in getDetailList()' :title="key" :value="value" :key="key"></info-list-item>
+      <info-list-item v-for='item in detailList' :title="item.title" :value="currentRow[item.field]" :key="item.value"></info-list-item>
     </el-dialog>
   </div>
 </template>
@@ -35,8 +35,7 @@
   import infoListItem from '../../../components/infoListItem.vue';
   import exportButton from '../../../components/tools/exportButton.vue';
   import wageExportPanel from './wageExportPanel.vue';
-  import {datePickerQuickSelections} from '../../../constants/constants';
-  import {loadFormatToColumns, translateDataByFormat} from '../../../utils/excel';
+  import {datePickerQuickSelections, wageColumns, wageDetailList} from '../../../constants/constants';
 
   export default {
     name: 'wageRecordList',
@@ -45,7 +44,6 @@
 
     computed: {
       ...mapState({
-        currentProj: state => state.global.current_proj,
         wageList: state => state.wage.wage_list,
         wageTotalCount: state => state.wage.wage_total_count,
       }),
@@ -55,14 +53,13 @@
           end_time: this.dateRange? this.dateRange[1].getTime()/1000:0,
           page: this.page,
           page_size: 10,
-          proj_id: this.currentProj.id,
-          crew_id: ''
+          crew_id: this.crewId
         }
       }
     },
     data() {
       return {
-        columns: [],
+        columns: wageColumns,
         page: 1,
         showExportPanel: false,
         datePickerOptions: datePickerQuickSelections,
@@ -70,20 +67,11 @@
         currentRowIndex: 0,
         dateRange: '',
         showDetailDialog: false,
-        remoteConfig: {
-          tableColumns: '',
-          detailInfoList: '',
-        }
+        detailList: wageDetailList
       }
     },
     mounted(){
-      this.crewId && (this.filters.crew_id = this.crewId);
-      this.query(()=>{
-        this.columns = loadFormatToColumns(this.remoteConfig.tableColumns);
-        this.columns.push({
-          field: 'operate', title: '操作', componentName: 'wage-table-operation'
-        });
-      })
+      this.query()
     },
     methods: {
       ...mapActions(['getWageRecords']),
@@ -115,9 +103,6 @@
           return '结算明细（最新5000条）.xlsx'
         }
       },
-      getDetailList(){
-        return translateDataByFormat([this.currentRow], this.remoteConfig.detailInfoList)[0]
-      }
     },
   }
 

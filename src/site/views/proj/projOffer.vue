@@ -2,11 +2,9 @@
   <div>
     <el-card class="m-a-1" :body-style="{padding: 0}" v-show="!showOfferForm">
       <div class="el-card__header">
-        <span style="margin-right: 20px; float: left;">赔付查询</span>
-        <div >
-          <el-input placeholder="输入员工姓名或手机搜索" v-model="filters.searchKey" style="width: 250px" size="small"></el-input>
-          <el-button icon="el-icon-search" size="small" @click="onFilterClick()"></el-button>
-          <el-button class="pull-right" size="small" @click="createOfferHandle()">+ 新建报价单</el-button>
+        <span style="margin-right: 20px;">报价管理</span>
+        <div class="inline-block pull-right">
+          <el-button size="small" @click="createOfferHandle()">+ 新建报价单</el-button>
         </div>
       </div>
       <list-view :table-data="offerList" :columns="columns" :pages="Math.ceil(offerTotalCount/10)" :on-page-change="onPageChange" :on-custom-comp="onTableButtonClick"></list-view>
@@ -58,7 +56,7 @@
           {title: '岗位', field: 'position', width: 50},
           {title: '类型', field: 'offer_type_str', width: 80},
           {title: '结算规则', field: 'proj_name', componentName: 'offer-plugins', width: 250},
-          {title: '收入范围', field: 'wage_range', width: 100},
+          {title: '标准工作量', field: 'standard_value', width: 100},
           {field: 'operate', title: '操作', componentName: 'offer-table-operation'}
         ],        page: 1,
         selectedOffer: {}

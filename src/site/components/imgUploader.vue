@@ -51,23 +51,17 @@
       onSuccess: {},
       onRemove: {},
     },
-    computed: {
-      ...mapState({
-        projId: state => state.global.current_proj.id || 0,
-      }),
-      uploadData: function(){
-        return {img_type: this.imgType, proj_id: this.projId, prefix: IMG_PREFIX, override: this.limit === 1}
-      }
-    },
     data() {
       return {
         dialogImageUrl: '',
         dialogVisible: false,
+        uploadData: {img_type: this.imgType, prefix: IMG_PREFIX, override: this.limit === 1}
       };
     },
     methods: {
-      submitUpload(projId) {
-        projId && (this.uploadData.proj_id = projId);
+      submitUpload(bus_type, bus_id) {
+        this.uploadData.bus_type = bus_type;
+        this.uploadData.bus_id = bus_id;
         return this.$refs.upload.submit();       //  这里会触发覆盖的上传接口
       },
       beforeUpload(file) {

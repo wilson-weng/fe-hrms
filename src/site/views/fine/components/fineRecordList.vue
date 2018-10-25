@@ -8,13 +8,13 @@
           type="daterange"
           align="right"
           unlink-panels
-          range-separator="至"
+          range-separator="-"
           start-placeholder="开始日期"
           end-placeholder="结束日期"
           :picker-options="datePickerOptions" size="small">
         </el-date-picker>
         <el-button icon="el-icon-search" size="small" @click="onFilterClick()"></el-button>
-        <export-button v-gear="'导出按钮'" style="float: right;" size="small" :file-title="getDownloadFileName()" file-id="fineDownload" :filters="filters" :getter="getFineRecords"></export-button>
+        <export-button style="float: right;" size="small" :file-title="getDownloadFileName()" file-id="fineDownload" :filters="filters" :getter="getFineRecords"></export-button>
       </div>
     </div>
     <list-view :table-data="fineList" :columns="columns" :pages="Math.ceil(fineTotalCount/10)" :on-page-change="onPageChange" :on-custom-comp="onTableButtonClick"></list-view>

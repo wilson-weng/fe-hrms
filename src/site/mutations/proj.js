@@ -8,6 +8,7 @@ const initState = {
   offer_total_count: 0,
   offer_plugin_list: [],
   offer_plugin_map: null,
+  proj_post: {}
 };
 
 const getters = {
@@ -26,6 +27,9 @@ const mutations = {
   [mutationTypes.SET_OFFER_PLUGINS](state, obj) {
     state.offer_plugin_list = Object.values(obj);
     state.offer_plugin_map = obj;
+  },
+  [mutationTypes.SET_PROJECT_POST](state, obj) {
+    state.proj_post = obj;
   },
 };
 

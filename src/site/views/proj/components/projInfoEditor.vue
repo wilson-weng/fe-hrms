@@ -1,27 +1,17 @@
 <template>
-  <el-form label-position="right" label-width="100px" :model="projModel" v-loading="loading">
+  <el-form label-position="right" label-width="100px" :model="postModel" v-loading="loading">
     <el-form-item label="项目logo: ">
-      <img-square :url="projModel.logo_url" :on-remove="showLogoUploaderHandle" v-show="!showLogoUploader"></img-square>
+      <img-square :url="postModel.logo_url" :on-remove="showLogoUploaderHandle" v-show="!showLogoUploader"></img-square>
       <img-uploader ref="logoUpload" img-type="logo" v-show="showLogoUploader"></img-uploader>
-    </el-form-item>
-    <el-form-item label="项目名称: ">
-      <el-input
-        v-model="projModel.proj_name" style="max-width: 300px">
-      </el-input>
-    </el-form-item>
-    <el-form-item label="项目地址: ">
-      <el-input
-        v-model="projModel.address" style="max-width: 300px">
-      </el-input>
     </el-form-item>
     <el-form-item label="需求人数: ">
       <el-input
-        v-model="projModel.crew_num" style="max-width: 300px">
+        v-model="postModel.crew_num" style="max-width: 300px">
       </el-input>
     </el-form-item>
     <el-form-item label="收入范围: ">
       <el-input
-        v-model="projModel.wage_range" style="max-width: 300px">
+        v-model="postModel.wage_range" style="max-width: 300px">
       </el-input>
     </el-form-item>
     <el-form-item label="项目标签: ">
@@ -47,7 +37,7 @@
     </el-form-item>
     <el-form-item label="介绍图片: ">
       <div style="display: flex;">
-        <img-square v-for='item in projModel.intro_pic_list' :key="item.id" :url="item.url" :meta="item" :on-remove="removeIntroImgHandle" class="inline-block"></img-square>
+        <img-square v-for='item in postModel.intro_pic_list' :key="item.id" :url="item.url" :meta="item" :on-remove="removeIntroImgHandle" class="inline-block"></img-square>
         <img-uploader :limit="10" :multiple="true" ref="introImgUpload" img-type="intro" class="inline-block"></img-uploader>
       </div>
 
@@ -70,12 +60,13 @@
     computed: {
       ...mapState({
         currentProj: state => state.global.current_proj,
+        post: state => state.proj.proj_post,
       }),
     },
 
     data() {
       return {
-        projModel: {},
+        postModel: {},
         inputVisible: false,
         inputTagValue: '',
         tags: [],
@@ -86,7 +77,7 @@
     },
 
     methods: {
-      ...mapActions(['updateProjBasicInfo', 'deletProjPic']),
+      ...mapActions(['updatePost', 'deletProjPic']),
       handleRemoveTag(tag){
         this.tags.splice(this.tags.indexOf(tag), 1);
       },
@@ -106,16 +97,16 @@
       },
       confirmUpdate(){
         this.loading = true;
-        this.$refs.logoUpload.submitUpload();
-        this.$refs.introImgUpload.submitUpload();
+        this.$refs.logoUpload.submitUpload('post', this.post.id);
+        this.$refs.introImgUpload.submitUpload('post', this.post.id);
         this.introImgRemoveList.map(id=>{
           this.deletProjPic(id);
         });
         setTimeout(()=>{
-          this.projModel.tags = this.tags.join(',');
-          this.updateProjBasicInfo(this.projModel).then(()=>{
+          this.postModel.tags = this.tags.join(',');
+          this.updatePost(this.postModel).then(()=>{
             this.loading = false;
-            this.onUpdate(this.projModel)
+            this.onUpdate(this.postModel)
           })
         }, 1000)
       },
@@ -123,22 +114,23 @@
         this.showLogoUploader = true;
       },
       removeIntroImgHandle(url, item){
-        let index = this.projModel.intro_pic_list.indexOf(url);
-        this.projModel.intro_pic_list.splice(index, 1);
+        let index = this.postModel.intro_pic_list.indexOf(url);
+        this.postModel.intro_pic_list.splice(index, 1);
         this.introImgRemoveList.push(item.id)
       },
       reset(){
         this.$refs.logoUpload.clearFiles();
         this.$refs.introImgUpload.clearFiles();
-        this.projModel = JSON.parse(JSON.stringify(this.currentProj));
+        this.postModel = Object.assign({}, this.post);
         this.showLogoUploader = false;
         this.introImgRemoveList = [];
       }
     },
 
     mounted() {
-      this.projModel = JSON.parse(JSON.stringify(this.currentProj));
-      this.tags = this.projModel.tags? this.projModel.tags.split(',') : [];
+      this.postModel = Object.assign({}, this.post);
+      this.tags = this.postModel.tags? this.postModel.tags.split(',') : [];
+      !this.post.logo_url && this.showLogoUploaderHandle();
     }
   }
 </script>

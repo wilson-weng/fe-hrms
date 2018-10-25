@@ -27,7 +27,8 @@ import iconButtonVertical from '../../../components/iconButtonVertical.vue';
 import dialogUploadErrors from '../../../components/dialog/dialogUploadErrors.vue';
 import dialogPreviewTable from '../../../components/dialog/dialogPreviewTable.vue';
 import listView from '../../../components/listView.vue';
-import { downloadExcel, uploadExcel, loadTemplate, loadDataByFormat, loadFormatKeyToColumns } from '../../../utils/excel';
+import { downloadExcel, uploadExcel, loadDataByFormat, loadTemplate, loadPreviewColumns } from '../../../utils/excel';
+import { crewUploadDataList } from '../../../constants/constants';
 import { mapState, mapActions } from 'vuex';
 
 export default {
@@ -48,10 +49,7 @@ export default {
       downloadButtonId: 'crewTemplate',
       showErrorDialog: false,
       uploadErrors: [],
-      remoteConfig: {
-        crewInputFormat: '',
-        crewInputTemplate: '',
-      }
+      uploadDataList: crewUploadDataList,
     }
   },
   mounted(){
@@ -64,14 +62,14 @@ export default {
     },
     selectUploadFile(){
       uploadExcel(this.uploadButton).then(lines => {
-        this.previewTableAttr = loadFormatKeyToColumns(this.remoteConfig.crewInputFormat);
+        this.previewTableAttr = loadPreviewColumns(this.uploadDataList);
         this.previewTableData = lines;
         this.showExcelPreview = true;
       });
     },
     uploadCrewData(){
       let rawData = this.previewTableData;
-      let data = loadDataByFormat(rawData, this.remoteConfig.crewInputFormat);
+      let data = loadDataByFormat(rawData, this.uploadDataList);
       this.createCrewRecords({proj_id: this.currentProj.id, lines: JSON.stringify(data)}).then(result =>{
         this.showExcelPreview = false;
         this.resetUpload();
@@ -105,9 +103,7 @@ export default {
       done && done();
     },
     downloadCrewTemplate(){
-      if(this.remoteConfig.crewInputTemplate) {
-        downloadExcel('人员导入模板', [loadTemplate(this.remoteConfig.crewInputTemplate)], 'xlsx', 'crewTemplate')
-      }
+      downloadExcel('人员导入模板', [loadTemplate(this.uploadDataList)], 'xlsx', 'crewTemplate')
     },
   }
 }

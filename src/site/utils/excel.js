@@ -184,17 +184,20 @@ export const translateDataByFormat = (data, format) => {
   })
 };
 
-export const loadDataByFormat = (data, format) => {
-  let result = {};
-  for(let item of format){
-    result[item.field] = data[item.title]
-  }
-  return result;
+export const loadDataByFormat = (dataList, format) => {
+  return dataList.map(data=>{
+    let result = {};
+    for(let item of format){
+      result[item.field] = data[item.title]
+    }
+    return result;
+  });
 };
 
 export const loadPreviewColumns = (dataList) => {
-  return dataList.map(item=>{
-    item.field = item.title;
-    return item;
-  })
+  let result = [];
+  for(let item of dataList){
+    result.push({title: item.title, field: item.title})
+  }
+  return result
 };

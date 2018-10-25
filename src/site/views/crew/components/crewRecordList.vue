@@ -5,7 +5,7 @@
       <div >
         <el-input placeholder="输入员工姓名或手机搜索" v-model="searchKey" style="width: 250px" size="small"></el-input>
         <el-button icon="el-icon-search" size="small" @click="onFilterClick()"></el-button>
-        <export-button v-gear="'导出按钮'" style="float: right;" size="small" :file-title="getDownloadFileName()" file-id="crewDownload" :filters="filters" :getter="getCrewRecords"></export-button>
+        <export-button style="float: right;" size="small" :file-title="getDownloadFileName()" file-id="crewDownload" :filters="filters" :getter="getCrewRecords"></export-button>
       </div>
     </div>
     <list-view :table-data="crewList" :columns="columns" :pages="Math.ceil(crewTotalCount/10)" :on-page-change="onPageChange" :on-custom-comp="onTableButtonClick"></list-view>
@@ -27,7 +27,7 @@
   import listView from '../../../components/listView.vue';
   import infoListItem from '../../../components/infoListItem.vue';
   import exportButton from '../../../components/tools/exportButton.vue';
-  import {loadFormatToColumns} from "src/site/utils/excel";
+  import {crewColumns} from '../../../constants/constants';
 
   export default {
     name: 'crewRecordList',
@@ -35,7 +35,6 @@
 
     computed: {
       ...mapState({
-        currentProj: state => state.global.current_proj,
         crewList: state => state.crew.crew_list,
         crewTotalCount: state => state.crew.crew_total_count,
       }),
@@ -43,30 +42,20 @@
         return {
           page: this.page,
           page_size: 10,
-          proj_id: this.currentProj.id,
           search_key: this.searchKey
         }
       }
     },
     data() {
       return {
-        columns: [],
         page: 1,
         searchKey: '',
         showConfirmDeleteDialog: false,
-        remoteConfig: {
-          tableColumns: '',
-        }
+        columns: crewColumns,
       }
     },
     mounted(){
-      this.query(()=>{
-        this.columns = loadFormatToColumns(this.remoteConfig.tableColumns);
-        this.columns.push({
-          field: 'operate', title: '操作', componentName: 'crew-table-operation'
-        });
-        console.log(this.columns, this.crewList, this.crewTotalCount)
-      })
+      this.query()
     },
     methods: {
       ...mapActions(['getCrewRecords','exportCrewRecords', 'deleteCrewRecords', 'setCurrentCrew']),

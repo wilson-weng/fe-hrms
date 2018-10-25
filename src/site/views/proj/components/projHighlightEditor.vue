@@ -94,9 +94,6 @@
     },
 
     mounted() {
-      this.getProjContent(this.currentProj.id).then(result=>{
-        this.highlight = result.highlight;
-      });
     }
   }
 </script>

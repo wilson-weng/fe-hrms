@@ -20,8 +20,10 @@
           <el-menu @select="onOptionSelect"
                    :default-active="selected && selected.id.toString()"
                    class="selection-menu major-menu">
-            <div style="padding: 20px">选择公司</div>
-            <el-menu-item :index="item.id.toString()" :data="item" v-for="item in filteredOptions" :key="item.id">{{item.name}}</el-menu-item>
+            <div style="padding: 20px">选择单位</div>
+            <el-menu-item :index="item.id.toString()" :data="item" v-for="item in sortedOptions" :key="item.id">
+              {{item.name}}<span class="pull-right">{{item.tag}}</span>
+            </el-menu-item>
           </el-menu>
         </el-col>
       </el-row>
@@ -55,6 +57,11 @@
       }
       return Object.keys(filterObj).map(item=>{
         return {title: item, options: filterObj[item]}
+      })
+    },
+    sortedOptions: function(){
+      return this.filteredOptions.sort((a,b)=>{
+        return b.sort - a.sort
       })
     }
   },
@@ -94,11 +101,6 @@
 </script>
 
 <style  scoped>
-  .major-menu .el-menu-item {
-    width: 240px;
-    display: inline-block;
-    /*border-right: 1px solid #e8e8e8;*/
-  }
   .el-menu-item {
     height: 38px;
     line-height: 38px;

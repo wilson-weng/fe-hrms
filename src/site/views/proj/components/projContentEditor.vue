@@ -142,9 +142,6 @@
     },
 
     mounted() {
-      this.getProjContent(this.currentProj.id).then(result=>{
-        this.projContent = result;
-      });
     }
   }
 </script>

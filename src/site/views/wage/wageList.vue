@@ -7,7 +7,7 @@
       </div>
     </el-card>
     <el-card class="m-a-1" :body-style="{padding: 0}">
-      <wage-record-list v-gear="'结算列表'"></wage-record-list>
+      <wage-record-list></wage-record-list>
     </el-card>
   </div>
 </template>

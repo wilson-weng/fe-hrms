@@ -4,7 +4,7 @@ import * as Utils from '../utils';
 import axios from 'axios'
 
 export const getProjs = ({ commit }, filters) => {
-  let options = '{"module":"proj","query":"list_proj","attrs":[]}';
+  let options = '{"module":"proj","query":"list_proj","attrs":["crew_num", "position_options"]}';
   return axios.get(`${urls.DATA_QUERY}?filters=${JSON.stringify(filters)}&options=${options}`)
     .then(response => response.data)
     .then(res => {
@@ -57,17 +57,9 @@ export const deleteRichText = ({ commit }, id) => {
     .then(response => response.json());
 };
 
-export const updateProjBasicInfo = ({ commit }, params) => {
-  return fetch(`${urls.PROJ_CRUD}`, {
-    method: 'PUT',
-    credentials: 'include',
-    headers: Utils.getFormHeader(),
-    body: Utils.getPostParams(params)
-  })
-    .then(response => response.json())
-    .then(response => {
-      commit(mutationTypes.SET_CUR_PROJ, response.content)
-    });
+export const updatePost = ({ commit }, params) => {
+  return axios.post(`${urls.PROJ_POST}`, params)
+    .then(response => response.data)
 };
 
 export const deletProjPic = ({ commit }, id) => {
@@ -116,6 +108,19 @@ export function getOfferPlugins({ commit }, params){
     .then(res => {
       if(res.status == 'ok'){
         commit(mutationTypes.SET_OFFER_PLUGINS, res.data);
+      }
+      return res;
+    });
+}
+
+
+export const getProjPost = ({ commit }, filters) => {
+  let options = '{"module":"proj","query":"get_proj_post","attrs":["logo_url","intro_list_pics","recruit_post_highlight","recruit_post_details"]}';
+  return axios.get(`${urls.DATA_QUERY}?filters=${JSON.stringify(filters)}&options=${options}`)
+    .then(response => response.data)
+    .then(res => {
+      if(res.status == 'ok'){
+        commit(mutationTypes.SET_PROJECT_POST, res.data);
       }
       return res;
     });

@@ -10,6 +10,8 @@ import fine from './site/views/fine/fineList.vue'
 import wxApply from './site/views/wxApplyList.vue'
 import worktable from './site/views/workTable.vue'
 import recruitEditor from './site/views/proj/recruitPageEditor.vue'
+import dashboard from './site/views/dashboard.vue'
+import crewSearch from './site/views/crewSearch.vue'
 import mobile from './site/views/mobile.vue'
 import projOffer from './site/views/proj/projOffer.vue'
 
@@ -26,6 +28,14 @@ const routes = [
     name: "main",
     component: main,
     children: [{
+      path: '/dashboard',
+      name: 'dashboard',
+      component: dashboard,
+    },{
+      path: '/crew/search',
+      name: 'crewSearch',
+      component: crewSearch,
+    },{
       path: '/proj',
       name: 'proj',
       component: proj,
@@ -43,7 +53,6 @@ const routes = [
       path: '/crew/detail',
       name: 'crewDetail',
       component: crewDetail,
-      meta: { projBar: true }
     },{
       path: '/wage',
       name: 'wage',

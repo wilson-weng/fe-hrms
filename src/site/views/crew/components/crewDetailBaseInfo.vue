@@ -1,8 +1,8 @@
 <template>
   <div>
     <el-row>
-      <el-col :span="12"  v-for='item in getDetailList()' :key="item">
-        <info-list-item :title="item" :value="currentCrew[item]" :key="item"></info-list-item>
+      <el-col :span="12"  v-for='item in detailList' :key="item.field">
+        <info-list-item :title="item.title" :value="currentCrew[item.field]"></info-list-item>
       </el-col>
     </el-row>
     <div class="text-right">
@@ -20,12 +20,12 @@
     </el-dialog>
     <el-dialog
       :visible.sync="showUpdateDialog"
-      width="30%"
+      width="400px"
       title="修改员工信息">
       <el-form label-position="right" label-width="100px" :model="updatedCrew">
-        <el-form-item v-for="item in updateInputList" :label="item + ': '" :key="item">
-          <el-input
-            v-model="updatedCrew[item]">
+        <el-form-item v-for="item in inputList" :label="item.title + ': '" :key="item.field">
+          <el-input style="width: 200px"
+            v-model="updatedCrew[item.field]">
           </el-input>
         </el-form-item>
       </el-form>
@@ -40,7 +40,7 @@
 <script>
 import { mapState, mapActions } from 'vuex';
 import infoListItem from '../../../components/infoListItem';
-import { loadFormatKeys, translateDataByFormat } from '../../../utils/excel';
+import { crewDetailList, crewUploadDataList } from '../../../constants/constants'
 
 export default {
   components: {infoListItem},
@@ -54,20 +54,19 @@ export default {
     return {
       showConfirmDeleteDialog: false,
       showUpdateDialog: false,
-      updateInputList: [],
+      inputList: crewUploadDataList,
       updatedCrew: {},
-      remoteConfig: {
-        crewInfoFormat: '',
-      }
+      detailList: crewDetailList
+    }
+  },
+  created(){
+    for(let item of crewUploadDataList){
+      this.updatedCrew[item.field] = this.currentCrew[item.field];
     }
   },
   methods: {
     ...mapActions(['deleteCrewRecords','updateCrewRecords', 'getCrewById', 'setCurrentCrew']),
     showUpdateDialogHandle(){
-      this.updateInputList = loadFormatKeys(this.remoteConfig.crewInfoFormat);
-      this.updateInputList.map(item => {
-        this.updatedCrew[item] = this.currentCrew[item];
-      });
       this.showUpdateDialog = true;
     },
     confirmUpdate(){
@@ -88,9 +87,6 @@ export default {
         }, 2000)
       })
     },
-    getDetailList(){
-      return translateDataByFormat([this.currentCrew], this.remoteConfig.crewInfoFormat)[0]
-    }
   }
 }
 </script>

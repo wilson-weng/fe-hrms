@@ -48,9 +48,13 @@
       }
     },
     methods: {
+      ...mapActions(['getProjPost']),
       reloadSimulator(){
         this.simulatorUrl = `http://localhost:5000/h5?timetamp=${Date.parse(new Date())}#/recruit/post?proj_id=1&`
       }
+    },
+    created(){
+      this.getProjPost({})
     }
 
   }

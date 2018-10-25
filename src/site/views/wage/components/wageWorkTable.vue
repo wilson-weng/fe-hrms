@@ -27,7 +27,8 @@ import iconButtonVertical from '../../../components/iconButtonVertical.vue';
 import dialogUploadErrors from '../../../components/dialog/dialogUploadErrors.vue';
 import dialogPreviewTable from '../../../components/dialog/dialogPreviewTable.vue';
 import listView from '../../../components/listView.vue';
-import { downloadExcel, uploadExcel, loadTemplate, loadFormatKeyToColumns, loadDataByFormat } from '../../../utils/excel';
+import { downloadExcel, uploadExcel, loadDataByFormat, loadTemplate, loadPreviewColumns } from '../../../utils/excel';
+import { wageUploadDataList } from '../../../constants/constants';
 import { mapState, mapActions } from 'vuex';
 
 export default {
@@ -48,10 +49,7 @@ export default {
       uploadloading: false,
       showErrorDialog: false,
       uploadErrors: [],
-      remoteConfig: {
-        wageInputFormat: '',
-        wageInputTemplate: ''
-      }
+      uploadDataList: wageUploadDataList
     }
   },
   mounted(){
@@ -64,16 +62,15 @@ export default {
     },
     selectUploadFile(){
       uploadExcel(this.uploadButton).then(lines => {
-        this.previewTableAttr = loadFormatKeyToColumns(this.remoteConfig.wageInputFormat);
+        this.previewTableAttr = loadPreviewColumns(this.uploadDataList);
         this.previewTableData = lines;
-        console.log(this.previewTableAttr, this.previewTableData)
         this.showExcelPreview = true;
       });
     },
     uploadWageData(){
       this.uploadloading = true;
       let rawData = this.previewTableData;
-      let data = loadDataByFormat(rawData, this.remoteConfig.wageInputFormat);
+      let data = loadDataByFormat(rawData, this.uploadDataList);
       this.createWageRawData({proj_id: this.currentProj.id, lines: JSON.stringify(data)}).then(result =>{
         this.showExcelPreview = false;
         this.resetUpload();
@@ -108,9 +105,7 @@ export default {
       done && done();
     },
     downloadWageTemplate(){
-      if(this.remoteConfig.wageInputTemplate) {
-        downloadExcel('结算数据导入模板', [loadTemplate(this.remoteConfig.wageInputTemplate)], 'xlsx', 'wageTemplate')
-      }
+      downloadExcel('结算数据导入模板', [loadTemplate(this.uploadDataList)], 'xlsx', 'wageTemplate')
     },
   }
 }

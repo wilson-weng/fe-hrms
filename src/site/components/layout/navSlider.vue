@@ -1,7 +1,17 @@
 <template>
   <div>
     <el-menu :router="true"
+             :default-active="$route.path"
+             :default-openeds="['/projManage']"
              class="no-border m-t-1">
+      <el-menu-item index="/dashboard">
+        <i class="fas fa-chart-line fa-adjust"></i>
+        <span slot="title">数据表盘</span>
+      </el-menu-item>
+      <el-menu-item index="/crew/search">
+        <i class="fas fa-user-tie fa-adjust"></i>
+        <span slot="title">人才库</span>
+      </el-menu-item>
       <el-menu-item index="/proj">
         <i class="el-icon-menu"></i>
         <span slot="title">项目管理</span>

@@ -13,6 +13,7 @@ export const PROJ_CONTENT = `${domain}/proj/content`;
 export const PROJ_RICHTEXT = `${domain}/proj/richtext`;
 export const PROJ_PIC = `${domain}/proj/pic`;
 export const PROJ_OFFER = `${domain}/offer`;
+export const PROJ_POST = `${domain}/post`;
 export const OFFER_PLUGINS = `${domain}/plugins/offer`;
 export const PLUGIN = `${domain}/plugin`;
 
