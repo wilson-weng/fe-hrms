@@ -39,8 +39,8 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
-import infoListItem from '../infoListItem';
-import { loadFormatKeys, translateDataByFormat } from '../../utils/excel';
+import infoListItem from '../../../components/infoListItem';
+import { loadFormatKeys, translateDataByFormat } from '../../../utils/excel';
 
 export default {
   components: {infoListItem},

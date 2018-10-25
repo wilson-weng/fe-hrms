@@ -23,10 +23,11 @@
 </template>
 
 <script>
-import iconButtonVertical from '../iconButtonVertical.vue';
-import dialogUploadErrors from '../dialog/dialogUploadErrors.vue';
-import listView from '../listView.vue';
-import { downloadExcel, uploadExcel, loadTemplate, loadDataByFormat, loadFormatKeyToColumns } from '../../utils/excel';
+import iconButtonVertical from '../../../components/iconButtonVertical.vue';
+import dialogUploadErrors from '../../../components/dialog/dialogUploadErrors.vue';
+import listView from '../../../components/listView.vue';
+import { downloadExcel, uploadExcel, loadDataByFormat, loadTemplate, loadPreviewColumns } from '../../../utils/excel';
+import { fineUploadDataList } from '../../../constants/constants';
 import { mapState, mapActions } from 'vuex';
 import DialogPreviewTable from "src/site/components/dialog/dialogPreviewTable";
 
@@ -47,10 +48,7 @@ export default {
       downloadButtonId: 'fineTemplate',
       showErrorDialog: false,
       uploadErrors: [],
-      remoteConfig: {
-        fineInputFormat: '',
-        fineInputTemplate: ''
-      }
+      uploadDataList: fineUploadDataList,
     }
   },
   mounted(){
@@ -63,14 +61,14 @@ export default {
     },
     selectUploadFile(){
       uploadExcel(this.uploadButton).then(lines => {
-        this.previewTableAttr = loadFormatKeyToColumns(this.remoteConfig.fineInputFormat);
+        this.previewTableAttr = loadPreviewColumns(this.uploadDataList);
         this.previewTableData = lines;
         this.showExcelPreview = true;
       });
     },
     uploadFineData(){
       let rawData = this.previewTableData;
-      let data = loadDataByFormat(rawData, this.remoteConfig.fineInputFormat);
+      let data = loadDataByFormat(rawData, this.uploadDataList);
       this.createFineRecords({proj_id: this.currentProj.id, lines: JSON.stringify(data)}).then(result =>{
         this.showExcelPreview = false;
         this.resetUpload();
@@ -104,9 +102,7 @@ export default {
       done && done();
     },
     downloadFineTemplate(){
-      if(this.remoteConfig.fineInputTemplate) {
-        downloadExcel('异常导入模板', [loadTemplate(this.remoteConfig.fineInputTemplate)], 'xlsx', 'fineTemplate')
-      }
+      downloadExcel('异常导入模板', [loadTemplate(this.uploadDataList)], 'xlsx', 'fineTemplate')
     },
   }
 }

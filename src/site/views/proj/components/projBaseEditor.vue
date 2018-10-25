@@ -1,9 +1,5 @@
 <template>
   <el-form label-position="right" label-width="100px" :model="projModel" v-loading="loading">
-    <el-form-item label="项目logo: ">
-      <img-square :url="projModel.logo_url" :on-remove="showLogoUploaderHandle" v-show="!showLogoUploader"></img-square>
-      <img-uploader ref="logoUpload" img-type="logo" v-show="showLogoUploader"></img-uploader>
-    </el-form-item>
     <el-form-item label="项目名称: ">
       <el-input
         v-model="projModel.proj_name" style="max-width: 300px">
@@ -43,23 +39,15 @@
 
 <script>
   import { mapState, mapActions } from 'vuex';
-  import imgUploader from '../imgUploader.vue';
+  import imgUploader from '../../../components/imgUploader.vue';
   import ImgSquare from "src/site/components/imgSquare";
 
   export default {
     components: {ImgSquare, imgUploader },
-    props: ['onUpdate'],
-    computed: {
-      ...mapState({
-        currentProj: state => state.global.current_proj,
-        company: state => state.global.company,
-      }),
-    },
-
+    props: ['onUpdate', 'projData'],
     data() {
       return {
         projModel: {},
-        showLogoUploader: false,
         loading: false,
       }
     },
@@ -69,27 +57,20 @@
 
       confirmUpdate(){
         this.loading = true;
-        this.projModel.company_id = this.company.id;
-        let apiFunc = this.currentProj.id? this.updateProj : this.createProj;
+        let apiFunc = this.projData.id? this.updateProj : this.createProj;
         apiFunc(this.projModel).then(res=>{
           this.loading = false;
-          this.$refs.logoUpload.submitUpload(res.data.id);
           this.onUpdate(this.projModel)
         })
       },
-      showLogoUploaderHandle(){
-        this.showLogoUploader = true;
-      },
       reset(){
         this.$refs.logoUpload.clearFiles();
-        this.projModel = JSON.parse(JSON.stringify(this.currentProj));
-        this.showLogoUploader = false;
+        this.projModel = JSON.parse(JSON.stringify(this.projData));
       }
     },
 
     mounted() {
-      this.projModel = JSON.parse(JSON.stringify(this.currentProj));
-      !this.projModel.id && this.showLogoUploaderHandle();
+      this.projModel = JSON.parse(JSON.stringify(this.projData));
     }
   }
 </script>

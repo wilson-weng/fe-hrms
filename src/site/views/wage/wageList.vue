@@ -13,7 +13,7 @@
 </template>
 
 <script>
-  import WageRecordList from "src/site/components/wage/wageRecordList";
+  import WageRecordList from "src/site/views/wage/components/wageRecordList";
 
   export default {
     components: { WageRecordList },

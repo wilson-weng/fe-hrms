@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card class="m-a-1" :body-style="{padding: 0}">
-      <crew-record-list v-gear="'人员列表'"></crew-record-list>
+      <fine-record-list></fine-record-list>
     </el-card>
   </div>
 </template>
@@ -9,10 +9,10 @@
 <script>
 
 
-  import CrewRecordList from "src/site/components/crew/crewRecordList";
+  import FineRecordList from "src/site/views/fine/components/fineRecordList";
 
   export default {
-    components: {CrewRecordList },
+    components: {FineRecordList },
 
     data() {
       return {

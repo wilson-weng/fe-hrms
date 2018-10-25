@@ -2,9 +2,7 @@ import * as actions from '../actions/global';
 import * as mutationTypes from '../constants/mutationTypes';
 
 const initState = {
-  current_proj: {
-    id: 0
-  },
+  current_proj: null,
   current_user: {
     id: 1,
     real_name: '王经理',

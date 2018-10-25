@@ -19,5 +19,7 @@ export const DELETE_APPLY = 'DELETE_APPLY';
 export const SET_PROJECT_LIST = 'SET_PROJECT_LIST';
 
 export const SET_PAGE_CONF = 'SET_PAGE_CONF';
+export const SET_PROJECT_OFFERS = 'SET_PROJECT_OFFERS';
+export const SET_OFFER_PLUGINS = 'SET_OFFER_PLUGINS';
 
 

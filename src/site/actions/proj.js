@@ -4,7 +4,7 @@ import * as Utils from '../utils';
 import axios from 'axios'
 
 export const getProjs = ({ commit }, filters) => {
-  let options = '{"module":"proj","query":"list_proj","attrs":["logo_url"]}';
+  let options = '{"module":"proj","query":"list_proj","attrs":[]}';
   return axios.get(`${urls.DATA_QUERY}?filters=${JSON.stringify(filters)}&options=${options}`)
     .then(response => response.data)
     .then(res => {
@@ -23,7 +23,7 @@ export function createProj({ commit }, params){
 
 
 export function updateProj({ commit }, params){
-  return axios.post(`${urls.PROJ_CRUD}/${params.id}`, params)
+  return axios.put(`${urls.PROJ_CRUD}/${params.id}`, params)
     .then(response => response.data)
 }
 
@@ -79,3 +79,44 @@ export const deletProjPic = ({ commit }, id) => {
   })
     .then(response => response.json());
 };
+
+
+export const getProjOffers = ({ commit }, filters) => {
+  let options = '{"module":"proj","query":"list_proj_offers","attrs":["offer_plugins","start_time_str","offer_type_str"]}';
+  return axios.get(`${urls.DATA_QUERY}?filters=${JSON.stringify(filters)}&options=${options}`)
+    .then(response => response.data)
+    .then(res => {
+      if(res.status == 'ok'){
+        commit(mutationTypes.SET_PROJECT_OFFERS, res.data);
+      }
+      return res;
+    });
+}
+
+
+export function createOffer({ commit }, params){
+  return axios.post(`${urls.PROJ_OFFER}`, params)
+    .then(response => response.data)
+}
+
+export function updatePlugin({ commit }, params){
+  return axios.post(`${urls.PLUGIN}`, params)
+    .then(response => response.data)
+}
+
+
+export function updateOffer({ commit }, params){
+  return axios.put(`${urls.PROJ_OFFER}/${params.id}`, params)
+    .then(response => response.data)
+}
+
+export function getOfferPlugins({ commit }, params){
+  return axios.get(`${urls.OFFER_PLUGINS}`, params)
+    .then(response => response.data)
+    .then(res => {
+      if(res.status == 'ok'){
+        commit(mutationTypes.SET_OFFER_PLUGINS, res.data);
+      }
+      return res;
+    });
+}

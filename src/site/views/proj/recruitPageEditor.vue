@@ -27,9 +27,9 @@
 
 <script>
   import { mapState, mapActions } from 'vuex';
-  import ProjInfoEditor from "src/site/components/recruit/projInfoEditor";
-  import ProjContentEditor from "src/site/components/recruit/projContentEditor";
-  import ProjHighlightEditor from "src/site/components/recruit/projHighlightEditor";
+  import ProjInfoEditor from "src/site/views/proj/components/projInfoEditor";
+  import ProjContentEditor from "src/site/views/proj/components/projContentEditor";
+  import ProjHighlightEditor from "src/site/views/proj/components/projHighlightEditor";
 
 
   export default {

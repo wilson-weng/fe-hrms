@@ -39,11 +39,11 @@
 
 <script>
   import { mapState, mapActions } from 'vuex';
-  import listView from '../listView.vue';
-  import infoListItem from '../infoListItem.vue';
-  import { downloadExcel } from '../../utils/excel';
+  import listView from '../../../components/listView.vue';
+  import infoListItem from '../../../components/infoListItem.vue';
+  import { downloadExcel } from '../../../utils/excel';
 
-  import {datePickerQuickSelections} from '../../constants/constants';
+  import {datePickerQuickSelections} from '../../../constants/constants';
 
   export default {
     components: { listView, infoListItem },

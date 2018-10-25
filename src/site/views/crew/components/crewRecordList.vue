@@ -24,9 +24,9 @@
 <script>
 
   import { mapState, mapActions } from 'vuex';
-  import listView from '../listView.vue';
-  import infoListItem from '../infoListItem.vue';
-  import exportButton from '../tools/exportButton.vue';
+  import listView from '../../../components/listView.vue';
+  import infoListItem from '../../../components/infoListItem.vue';
+  import exportButton from '../../../components/tools/exportButton.vue';
   import {loadFormatToColumns} from "src/site/utils/excel";
 
   export default {

@@ -12,9 +12,9 @@
 
 <script>
 import { mapState } from 'vuex';
-import crewDetailBaseInfo from '../components/crew/crewDetailBaseInfo.vue';
-import FineRecordList from "src/site/components/fine/fineRecordList";
-import WageRecordList from "src/site/components/wage/wageRecordList";
+import crewDetailBaseInfo from './components/crewDetailBaseInfo.vue';
+import FineRecordList from "src/site/views/fine/components/fineRecordList";
+import WageRecordList from "src/site/views/wage/components/wageRecordList";
 
 export default {
   components: {WageRecordList, FineRecordList, crewDetailBaseInfo, },

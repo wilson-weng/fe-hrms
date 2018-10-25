@@ -23,11 +23,11 @@
 </template>
 
 <script>
-import iconButtonVertical from '../iconButtonVertical.vue';
-import dialogUploadErrors from '../dialog/dialogUploadErrors.vue';
-import dialogPreviewTable from '../dialog/dialogPreviewTable.vue';
-import listView from '../listView.vue';
-import { downloadExcel, uploadExcel, loadTemplate, loadDataByFormat, loadFormatKeyToColumns } from '../../utils/excel';
+import iconButtonVertical from '../../../components/iconButtonVertical.vue';
+import dialogUploadErrors from '../../../components/dialog/dialogUploadErrors.vue';
+import dialogPreviewTable from '../../../components/dialog/dialogPreviewTable.vue';
+import listView from '../../../components/listView.vue';
+import { downloadExcel, uploadExcel, loadTemplate, loadDataByFormat, loadFormatKeyToColumns } from '../../../utils/excel';
 import { mapState, mapActions } from 'vuex';
 
 export default {

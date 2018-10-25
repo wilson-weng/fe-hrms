@@ -98,16 +98,10 @@ const getCharCol = (n) => {
   return s;
 };
 
-export const loadTemplate = (text) => {
+export const loadTemplate = (dataList) => {
   let result = {};
-  if(!text) return result;
-  if(text.indexOf(':') > 0){
-    text.split(',').map(item =>{
-      if(item.indexOf(':') > 0){
-        let pair = item.split(':');
-        result[pair[0]] = pair[1];
-      }
-    })
+  for(let item of dataList){
+    result[item.title] = item.example;
   }
   return result;
 };
@@ -191,14 +185,16 @@ export const translateDataByFormat = (data, format) => {
 };
 
 export const loadDataByFormat = (data, format) => {
-  let formatList = getTranslateObj(format);
-  return data.map(item=>{
-    let result = {};
-    for(let f of formatList){
-      if(item[f.front]){
-        result[f.back] = item[f.front]
-      }
-    }
-    return result;
+  let result = {};
+  for(let item of format){
+    result[item.field] = data[item.title]
+  }
+  return result;
+};
+
+export const loadPreviewColumns = (dataList) => {
+  return dataList.map(item=>{
+    item.field = item.title;
+    return item;
   })
 };

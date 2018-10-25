@@ -14,7 +14,7 @@
 </template>
 
 <script>
-  import {downloadExcel, translateDataByFormat} from '../../utils/excel';
+  import {downloadExcel, translateDataByFormat} from '../../../utils/excel';
 import { mapState, mapActions } from 'vuex';
 
 export default {

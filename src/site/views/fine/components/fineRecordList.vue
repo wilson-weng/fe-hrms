@@ -31,7 +31,7 @@
       :visible.sync="showDetailDialog"
       title="赔付详情"
       width="50%">
-      <info-list-item v-for='value, key in getDetailList()' :title="key" :value="value" :key="key"></info-list-item>
+      <info-list-item v-for='item in detailList' :title="item.title" :value="currentRow[item.field]" :key="item.value"></info-list-item>
     </el-dialog>
 
   </div>
@@ -40,11 +40,10 @@
 <script>
 
   import { mapState, mapActions } from 'vuex';
-  import listView from '../listView.vue';
-  import infoListItem from '../infoListItem.vue';
-  import exportButton from '../tools/exportButton.vue';
-  import {datePickerQuickSelections} from '../../constants/constants';
-  import {loadFormatToColumns, translateDataByFormat} from '../../utils/excel';
+  import listView from '../../../components/listView.vue';
+  import infoListItem from '../../../components/infoListItem.vue';
+  import exportButton from '../../../components/tools/exportButton.vue';
+  import {datePickerQuickSelections, fineColumns, fineDetailList} from '../../../constants/constants';
 
   export default {
     name: 'fineRecordList',
@@ -63,14 +62,12 @@
           end_time: this.dateRange? this.dateRange[1].getTime()/1000:0,
           page: this.page,
           page_size: 10,
-          proj_id: this.currentProj.id,
-          crew_id: ''
+          crew_id: this.crew_id
         }
       }
     },
     data() {
       return {
-        columns: [],
         page: 1,
         datePickerOptions: datePickerQuickSelections,
         currentRow: {},
@@ -78,20 +75,12 @@
         dateRange: '',
         showConfirmDeleteDialog: false,
         showDetailDialog: false,
-        remoteConfig: {
-          tableColumns: '',
-          detailInfoList: '',
-        }
+        columns: fineColumns,
+        detailList: fineDetailList
       }
     },
     mounted(){
-      this.crewId && (this.filters.crew_id = this.crewId);
-      this.query(()=>{
-        this.columns = loadFormatToColumns(this.remoteConfig.tableColumns);
-        this.columns.push({
-          field: 'operate', title: '操作', componentName: 'fine-table-operation'
-        });
-      })
+      this.query()
     },
     methods: {
       ...mapActions(['getFineRecords','exportFineRecords', 'deleteFineRecords']),
@@ -131,9 +120,6 @@
           return '赔付明细（最新5000条）.xlsx'
         }
       },
-      getDetailList(){
-        return translateDataByFormat([this.currentRow], this.remoteConfig.detailInfoList)[0]
-      }
     },
   }
 

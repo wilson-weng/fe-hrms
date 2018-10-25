@@ -1,8 +1,8 @@
 <template>
   <div>
-    <crew-work-table v-gear="'人员导入'"></crew-work-table>
-    <wage-work-table v-gear="'结算导入'"></wage-work-table>
-    <fine-work-table v-gear="'赔付导入'"></fine-work-table>
+    <crew-work-table></crew-work-table>
+    <wage-work-table></wage-work-table>
+    <fine-work-table></fine-work-table>
     <el-card class="m-a-1" :body-style="{padding: 0}">
       <el-row type="flex" class="p-a-1">
         <el-col>
@@ -31,9 +31,9 @@
 
 <script>
 import iconButtonVertical from '../components/iconButtonVertical.vue';
-import FineWorkTable from '../components/fine/fineWorkTable.vue';
-import WageWorkTable from '../components/wage/wageWorkTable.vue';
-import CrewWorkTable from '../components/crew/crewWorkTable.vue';
+import FineWorkTable from './fine/components/fineWorkTable.vue';
+import WageWorkTable from './wage/components/wageWorkTable.vue';
+import CrewWorkTable from './crew/components/crewWorkTable.vue';
 import { mapState } from 'vuex';
 
 export default {

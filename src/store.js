@@ -16,7 +16,7 @@ import axios from 'axios';
 import * as Utils from "src/site/utils";
 axios.interceptors.request.use(function (config) {
   config.headers = Utils.getFormHeader()
-  if(store.state.global.current_proj.id){
+  if(store.state.global.current_proj){
     config.headers.proj_id = store.state.global.current_proj.id
   }
   config.headers.org_id = store.state.global.org_id
